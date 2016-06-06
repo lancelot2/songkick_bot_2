@@ -1,0 +1,37 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  welcome_message: "Hello Bot"
+  receipt-intro: "Thanks for your purchase! Here is your receipt:"
+  receipt-conclusion: "If ever we are missing something, one of our agents will be in touch with you"
+  collecting-user-logistic-info: "Great ! Can you give me your street address ? "
+  navigation-intro-1: "Hi, #{username} !"
+  navigation-intro-2: "Welcome to the Hipster store. We are a small fashion store only selling hipster clothes."
+  navigation-intro-3: "I will do my best to guide you but if you want to switch to a real human, just type 'help' at any time ;-)"
+  navigation-intro-4: "Are you ready ?"
+  navigation-start-validation: "(y)"
+  stop: "Ok, what can I do for you then ?"
+  human-assistance-requested: "A human operator will take it from here. It might take a few minutes. Feel free to type what you're looking for"
+  exit-requested: "It was a pleasure talking to you. Have a nice day #{username} ! :* "
+  restart-requested: "Roger that ! If ever we are missing something, one of our agents will be in touch with you"
+  lost: "Please hold on a few seconds, while I analyse your last message."
+  collecting-user-location: "Sounds good! Send us your location, using the [...] button, or type your city and we'll show you the closest stores"
