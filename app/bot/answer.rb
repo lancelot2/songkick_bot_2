@@ -159,6 +159,8 @@ def transfer_middle_office(session_id, username, sender, msg = "")
   session = Session.find(session_id)
   sender_id = session.facebook_id
   p "MIDDLE"
+  sender.reply("hello")
+  sender.reply({text: t('welcome_message')})
   # username = sender.get_profile[:body]["first_name"]
   # profile_picture = {profile_pic: (sender.get_profile[:body]["profile_pic"])}.to_query
   # p msg
