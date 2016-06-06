@@ -18,7 +18,6 @@ class MessengerBotController < ApplicationController
   end
 
   def message(event, sender)
-    render :nothing => true, :status => 200, :content_type => 'text/html'
     p "SENDER"
     p sender.class
     msg = event["message"]["text"]
