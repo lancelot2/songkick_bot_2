@@ -2,6 +2,10 @@ class MessengerBotController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
+  def webhook
+    render :json => params["hub.challenge"]
+  end
+
   def analyze_request(msg, sender, session)
     update_context(msg, session, sender)
     username = sender.get_profile[:body]["first_name"]

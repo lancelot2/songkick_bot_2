@@ -2,11 +2,7 @@ def answer(session, username, sender, msg = "")
   context = session.context
   navigation(session, username, sender, msg)
   entities(session, username, sender, msg, entity)
-  if session.context["intent"] == "yes" && context.size > 1
-    analyse_yes(msg, session, sender)
-  elsif session.context["intent"] == "no" && context.size > 1
-    analyse_no(msg, session, sender)
-  end
+
 end
 
 def increase_context(session)

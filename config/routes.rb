@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  mount Messenger::Bot::Space => "/webhook"
-
+ # mount Messenger::Bot::Space => "/webhook"
+  get "/webhook", to: "messenger_bot#webhook"
   get 'req' => 'analyzer#req'
   get 'shopify/req' => 'shopify#req'
 
