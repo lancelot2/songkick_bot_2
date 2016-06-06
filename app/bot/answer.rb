@@ -20,7 +20,7 @@ end
 def product(session, username, sender, msg = "")
   context = session.context
   if context["intent"] == "info"
-    product = Oj.load(RestClient.get "https://#{ENV['shopify_token']}@myshopifybot.myshopify.com/admin/products/#{context['product_id']}.json?fields=body_html,id")
+   # product = Oj.load(RestClient.get "https://#{ENV['shopify_token']}@myshopifybot.myshopify.com/admin/products/#{context['product_id']}.json?fields=body_html,id")
     more_info_message(product, sender)
   elsif context["intent"] == "viewmore"
     if context["previous_intent"] == "categories"
@@ -34,7 +34,7 @@ def product(session, username, sender, msg = "")
     end
   elsif context["intent"] == "pictures"
     p "PICTURES"
-    product = Oj.load(RestClient.get "https://#{ENV['shopify_token']}@myshopifybot.myshopify.com/admin/products/#{context['product_id']}.json?fields=images,id")
+   # product = Oj.load(RestClient.get "https://#{ENV['shopify_token']}@myshopifybot.myshopify.com/admin/products/#{context['product_id']}.json?fields=images,id")
     more_pictures_message(product, sender)
   end
 end
@@ -62,7 +62,7 @@ def run_query(session, msg= "")
       url = url + query.attr + "=" + query.value + "&"
     end
   end
-  products = Oj.load(RestClient.get url)
+ # products = Oj.load(RestClient.get url)
   if queries.include? "pricerange"
     products = filter_products_by_price(session, msg, products)
   end

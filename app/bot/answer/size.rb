@@ -1,7 +1,7 @@
 def size(session, username, sender, msg = "")
   context = session.context
   if context["intent"] == "sizes"
-    product = Oj.load(RestClient.get # CUSTOMER API: ENV['API_TOKEN'])
+    #product = Oj.load(RestClient.get # CUSTOMER API: ENV['API_TOKEN'])
     ans = " "
     get_stock(session,sender)
     sender.reply({text: ans})
