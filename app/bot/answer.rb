@@ -45,13 +45,13 @@ end
 
 def entities(session, username, sender, msg= "", entity)
   context = session.context
-  if context["intent"] == "entity" && context["entity"].present?
-    query = Query.create(session_id: session.id, attr: "entity", value: context["entity"])
+  if context["intent"] == entity && context[entity].present?
+    query = Query.create(session_id: session.id, attr: entity, value: context[entity])
     products = run_query(session, msg)
     context["products_showed"] = 0
     session.update(context: context)
     generic_template_message(session, products, sender, increase_context(session).context, msg)
-  elsif context["intent"] == "entity"
+  elsif context["intent"] == entity
     cta_pricerange_message(sender)
   end
 end
