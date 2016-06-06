@@ -38,6 +38,19 @@ def entities_determination(msg, context, parameter)
   context
 end
 
+# # Method for figuring out which parameter has been selected by the user
+# def entities_determination(msg, context, parameter, keywords)
+#   # Complete with an array of keywords
+#   tokenized_array = msg.downcase.split
+#   keywords.each do |array|
+#     if (tokenized_array & array).any?
+#        context[parameter] = array.first
+#        context["intent"] = parameter
+#     end
+#   end
+#   context
+# end
+
 
 def address_formatting(msg, session)
   context = session.context
