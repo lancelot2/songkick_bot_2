@@ -21,7 +21,7 @@ def europe(sender)
 
   copenhagen_button = Button.new
   copenhagen_button.add_postback("Concerts in Copenhagen","Copenhagen")
-  structured_reply.add_element("Copenhagen", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712869/SongKick/copenhagen.png", "", [copenhaguen_button.get_message] )
+  structured_reply.add_element("Copenhagen", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712869/SongKick/copenhagen.png", "", [copenhagen_button.get_message] )
 
   stockholm_button = Button.new
   stockholm_button.add_postback("Concerts in Stockholm","Stockholm")
