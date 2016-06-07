@@ -1,6 +1,6 @@
 # method for laying out the 3 geographical areas
 
-def cta_country_message(sender)
+def country(sender)
   structured_reply = GenericTemplate.new
 
   usa_button = Button.new
