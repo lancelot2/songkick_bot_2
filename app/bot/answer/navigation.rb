@@ -13,7 +13,7 @@ def navigation(session, username, sender, msg = "")
     cta_intent_message(session, sender)
   elsif context["intent"] == "start"
     sender.reply({text: t('navigation-start-validation')})
-    transfer_middle_office(session.id, sender, t('navigation-start-validation')
+    transfer_middle_office(session.id, sender, t('navigation-start-validation'))
     cta_intent_message(session, sender)
   elsif context["intent"] == "stop"
     sender.reply({text: t('stop')})
