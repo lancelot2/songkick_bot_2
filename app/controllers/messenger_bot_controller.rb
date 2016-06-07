@@ -53,10 +53,10 @@ class MessengerBotController < ApplicationController
         end
       end
       unless msg.nil?
-        sender.reply({text: "Hey"})
+        #sender.reply({text: "Hey"})
         # Commented because was generating an infinite loop
         # Uncomment to continue
-        #analyze_request(msg, sender, session)
+        analyze_request(msg, sender, session)
       end
     end
   end
