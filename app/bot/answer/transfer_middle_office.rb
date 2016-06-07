@@ -8,5 +8,5 @@ def transfer_middle_office(session_id, sender, msg = "")
   profile_picture = {profile_pic: (sender.get_profile[:body]["profile_pic"])}.to_query
   p msg
   url = "https://mymessagingstore.herokuapp.com/api/v1/sessions?fbid=#{sender_id}&msg=#{msg}&first_name=#{username}&sender=bot&context=#{session.context}&#{profile_picture}"
-  RestClient.post URI.encode(url), :content_type => :json, :accept => :json
+#RestClient.post URI.encode(url), :content_type => :json, :accept => :json
 end

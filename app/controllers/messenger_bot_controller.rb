@@ -2,6 +2,10 @@ class MessengerBotController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
+  def webhook
+    render :json => params["hub.challenge"]
+  end
+
   def analyze_request(msg, sender, session)
     update_context(msg, session, sender)
     username = sender.get_profile[:body]["first_name"]
@@ -28,7 +32,7 @@ class MessengerBotController < ApplicationController
     session.save
     mms_url = "https://mymessagingstore.herokuapp.com/api/v1/sessions?fbid=#{sender_id}&msg=#{msg}&first_name=#{username}&sender=user"
     p mms_url
-    RestClient.post URI.encode(mms_url), :content_type => :json, :accept => :json
+  #  RestClient.post URI.encode(mms_url), :content_type => :json, :accept => :json
 
 
     unless session.status == "human"

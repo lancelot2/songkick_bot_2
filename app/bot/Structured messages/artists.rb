@@ -21,14 +21,14 @@ end
 #     end
 #   end
 
-  session.update(context: context)
-  products["products"].each_with_index do |product, index|
-    unless (product["variants"].first["price"].to_i < context["pricemax"])  && (product["variants"].first["price"].to_i > context["pricemin"])
-     products["products"].delete(product)
-    end
-  end
-  products
-end
+#   session.update(context: context)
+#   products["products"].each_with_index do |product, index|
+#     unless (product["variants"].first["price"].to_i < context["pricemax"])  && (product["variants"].first["price"].to_i > context["pricemin"])
+#      products["products"].delete(product)
+#     end
+#   end
+#   products
+# end
 # Method for displaying a carousel of product according to a specific price range
 
 def price_filtered_message(products, sender, min, max)
