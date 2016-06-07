@@ -11,7 +11,7 @@ def intent_determination(msg, context, sender, session)
               ["yes", "yeah", "yep"]]
               ["country", "countries", "city", "cities"]
               ["venues", "venue"],
-              ["artists", "artist"],
+              ["artists", "artist"]]
 
   tokenized_array = msg.downcase.split
 
