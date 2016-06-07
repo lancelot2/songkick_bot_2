@@ -1,6 +1,6 @@
 # method for laying out the 10 cities available in the US
 
-def cta_country_message(sender)
+def usa(sender)
   structured_reply = GenericTemplate.new
 
   san_francisco_button = Button.new

@@ -1,4 +1,4 @@
-# Method of allowing the user to pick between 2 different of listings
+# Method of allowing the user to pick between 2 different listings: the trendiest and the most popular artists
 
 def cta_artists_message(sender)
   structured_reply = ButtonTemplate.new

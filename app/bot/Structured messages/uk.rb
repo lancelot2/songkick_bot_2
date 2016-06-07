@@ -1,6 +1,6 @@
 # method for laying out the 10 cities available in the UK
 
-def cta_country_message(sender)
+def uk(sender)
   structured_reply = GenericTemplate.new
 
   london_button = Button.new
