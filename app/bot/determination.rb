@@ -32,6 +32,10 @@ def entities_determination(msg, context, parameter)
   european_cities = [["Paris", "Pari"], ["Berlin"], ["Amsterdam"], ["Barcelona"], ["Copenhagen"], ["Stockholm"], ["Dublin"], ["Prague"], ["Rome"], ["Budapest"]]
   keywords = countries + usa_cities + uk_cities + european_cities
 
+  p 'ENTITIES DETERMINATION'
+  p msg
+  p context
+
   tokenized_array = msg.downcase.split
   keywords.each do |array|
     if (tokenized_array & array).any?
@@ -41,6 +45,7 @@ def entities_determination(msg, context, parameter)
        context["intent"] = parameter
     end
   end
+  p "UPDATED CONTEXT"
   p context
 end
 

@@ -1,7 +1,7 @@
 def answer(session, username, sender, msg = "")
   context = session.context
   navigation(session, username, sender, msg)
-  entity(session, username, sender, msg, "cities")
+  entity(session, username, sender, msg, "city")
   entity(session, username, sender, msg, "country")
 end
 
