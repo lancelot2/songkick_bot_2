@@ -1,3 +1,4 @@
+# manage to determinate which intent has the user requested to see
 def intent_determination(msg, context, sender, session)
   p "PREVIOUS CONTEXT"
   previous_context = context.clone
