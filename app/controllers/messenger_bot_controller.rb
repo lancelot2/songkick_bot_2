@@ -53,7 +53,7 @@ class MessengerBotController < ApplicationController
         end
       end
       unless msg.nil?
-        analyze_request(msg, sender, session)
+        #analyze_request(msg, sender, session)
       end
     end
   end
