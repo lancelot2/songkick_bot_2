@@ -1,6 +1,7 @@
 # method for laying out the 10 cities available in the US
 
 def usa(sender)
+  p 'JE SUIS LA'
   structured_reply = GenericTemplate.new
 
   san_francisco_button = Button.new

@@ -5,6 +5,8 @@ def entity(session, username, sender, msg= "", parameter)
       context["products_showed"] = 0
       session.update(context: context)
       products = run_query(session, msg)
+      p "PARAMETER HERE"
+      p parameter
       send(parameter, sender)
     elsif context["intent"] == parameter
       send(parameter, sender)
