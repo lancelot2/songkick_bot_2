@@ -229,3 +229,25 @@
 #     access_token: token
 #   }
 #   RestClient.post url, request_params.to_json, :content_type => :json, :accept => :json
+ # msg = 'USA'
+ # context = {}
+ # countries = [["US", "USA", "States", "America", "United States"], ["UK", "Great Britain", "United Kingdom", "England", "Scotland"], ["Europe", "France", "Germany", "Holland", "Danemark", "Sweden", "Spain", "Ireland", "Italy", "Hungary"]]
+ #  usa_cities = [["San Francisco", "SF"], ["Los Angeles", "LA"], ["New York", "New-York", "NY", "NYC"], ["Portland"], ["Washington"], ["Philadelphia"], ["Seattle"], ["Chicago"], ["Orlando"], ["Pittsburg"]]
+ #  uk_cities = [["London", "ldn"], ["Manchester"], ["Glasgow"], ["Edinburgh"], ["Birmingham"], ["Newcastle"], ["Bristol"], ["Belfast"], ["Brighton"], ["Liverpool"]]
+ #  european_cities = [["Paris", "Pari"], ["Berlin"], ["Amsterdam"], ["Barcelona"], ["Copenhagen"], ["Stockholm"], ["Dublin"], ["Prague"], ["Rome"], ["Budapest"]]
+ #  keywords = countries + usa_cities + uk_cities + european_cities
+ #  p keywords
+ #  p 'ENTITIES DETERMINATION'
+
+
+ #  tokenized_array = msg.downcase.split
+ #  p tokenized_array
+ #  keywords.each do |array|
+ #    p array
+ #    if (tokenized_array & array).any?
+ #       p "FIRST ARRAY"
+ #       p array.first
+ #       context[parameter] = array.first
+ #       context["intent"] = parameter
+ #    end
+ #  end
