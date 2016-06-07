@@ -1,7 +1,5 @@
 # method for laying out the 10 cities available in the US
 
-european_cities = [["Paris", "Pari"], ["Berlin"], ["Amsterdam"], ["Barcelona"], ["Copenhagen"], ["Stockholm"], ["Dublin"], ["Prague"], ["Rome"], ["Budapest"]]
-
 def cta_country_message(sender)
   structured_reply = GenericTemplate.new
 

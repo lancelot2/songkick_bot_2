@@ -1,7 +1,5 @@
 # method for laying out the 10 cities available in the UK
 
-uk_cities = [["London", "ldn"], ["Manchester"], ["Glasgow"], ["Edinburgh"], ["Birmingham"], ["Newcastle"], ["Bristol"], ["Belfast"], ["Brighton"], ["Liverpool"]]
-
 def cta_country_message(sender)
   structured_reply = GenericTemplate.new
 

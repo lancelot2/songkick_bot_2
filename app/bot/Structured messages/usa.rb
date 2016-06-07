@@ -1,7 +1,5 @@
 # method for laying out the 10 cities available in the US
 
-usa_cities = [["San Francisco", "SF"], ["Los Angeles", "LA"], ["New York", "New-York", "NY", "NYC"], ["Portland"], ["Washington"], ["Philadelphia"], ["Seattle"], ["Chicago"], ["Orlando"], ["Pittsburg"]]
-
 def cta_country_message(sender)
   structured_reply = GenericTemplate.new
 

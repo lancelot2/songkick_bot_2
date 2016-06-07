@@ -9,6 +9,9 @@ def intent_determination(msg, context, sender, session)
               ["mainbrowsing"],
               ["no", "nope", "fuck", "off", "bye", "fuckoff"],
               ["yes", "yeah", "yep"]]
+              ["country", "countries", "city", "cities"]
+              ["venues", "venue"],
+              ["artists", "artist"],
 
   tokenized_array = msg.downcase.split
 
@@ -27,7 +30,12 @@ end
 # Method for figuring out which parameter has been selected by the user
 def entities_determination(msg, context, parameter)
   # Complete keyword array with bot specific keywords
-  keywords = []
+  countries = [["US", "USA", "States", "America", "United States"], ["UK", "Great Britain", "United Kingdom", "England", "Scotland"], ["Europe", "France", "Germany", "Holland", "Danemark", "Sweden", "Spain", "Ireland", "Italy", "Hungary"]]
+  usa_cities = [["San Francisco", "SF"], ["Los Angeles", "LA"], ["New York", "New-York", "NY", "NYC"], ["Portland"], ["Washington"], ["Philadelphia"], ["Seattle"], ["Chicago"], ["Orlando"], ["Pittsburg"]]
+  uk_cities = [["London", "ldn"], ["Manchester"], ["Glasgow"], ["Edinburgh"], ["Birmingham"], ["Newcastle"], ["Bristol"], ["Belfast"], ["Brighton"], ["Liverpool"]]
+  european_cities = [["Paris", "Pari"], ["Berlin"], ["Amsterdam"], ["Barcelona"], ["Copenhagen"], ["Stockholm"], ["Dublin"], ["Prague"], ["Rome"], ["Budapest"]]
+  keywords = [countries, usa_cities, uk_cities, european_cities]
+
   tokenized_array = msg.downcase.split
   keywords.each do |array|
     if (tokenized_array & array).any?
@@ -37,20 +45,6 @@ def entities_determination(msg, context, parameter)
   end
   context
 end
-
-# # Method for figuring out which parameter has been selected by the user
-# def entities_determination(msg, context, parameter, keywords)
-#   # Complete with an array of keywords
-#   tokenized_array = msg.downcase.split
-#   keywords.each do |array|
-#     if (tokenized_array & array).any?
-#        context[parameter] = array.first
-#        context["intent"] = parameter
-#     end
-#   end
-#   context
-# end
-
 
 def address_formatting(msg, session)
   context = session.context
