@@ -31,7 +31,7 @@ def entities_determination(msg, context, parameter)
   uk_cities = [["London", "ldn"], ["Manchester"], ["Glasgow"], ["Edinburgh"], ["Birmingham"], ["Newcastle"], ["Bristol"], ["Belfast"], ["Brighton"], ["Liverpool"]]
   european_cities = [["Paris", "Pari"], ["Berlin"], ["Amsterdam"], ["Barcelona"], ["Copenhagen"], ["Stockholm"], ["Dublin"], ["Prague"], ["Rome"], ["Budapest"]]
   keywords = countries + usa_cities + uk_cities + european_cities
-
+  p keywords
   p 'ENTITIES DETERMINATION'
   p msg
   p context
