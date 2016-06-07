@@ -9,7 +9,7 @@ def navigation(session, username, sender, msg = "")
     sleep(3)
     sender.reply({text: t('navigation-intro-3')})
     transfer_middle_office(session.id, sender, t('navigation-intro-3'))
-    sleep(10)
+    sleep(3)
     cta_intent_message(session, sender)
   elsif context["intent"] == "start"
     sender.reply({text: t('navigation-start-validation')})
