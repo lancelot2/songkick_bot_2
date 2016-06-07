@@ -1,7 +1,5 @@
 # method for laying out the 3 geographical areas
 
-Countries = [["US", "USA", "States", "America", "United States"], ["UK", "Great Britain", "United Kingdom", "England", "Scotland"], ["Europe", "France", "Germany", "Holland", "Danemark", "Sweden", "Spain", "Ireland", "Italy", "Hungary"]]
-
 def cta_country_message(sender)
   structured_reply = GenericTemplate.new
 
