@@ -18,19 +18,14 @@ class MessengerBotController < ApplicationController
   end
 
   def message(event, sender)
-    p "SENDER"
-    p sender.class
     msg = event["message"]["text"]
     sender_id = event["sender"]["id"].to_i
     session = find_or_create_session(sender_id)
     username = sender.get_profile[:body]["first_name"]
-    p "PROFILE"
-    p sender.get_profile[:body]["profile_pic"]
     session.last_exchange =  Time.now
     session.count_messages += 1
     session.save
     mms_url = "https://mymessagingstore.herokuapp.com/api/v1/sessions?fbid=#{sender_id}&msg=#{msg}&first_name=#{username}&sender=user"
-    p mms_url
   #  RestClient.post URI.encode(mms_url), :content_type => :json, :accept => :json
 
 
@@ -53,9 +48,6 @@ class MessengerBotController < ApplicationController
         end
       end
       unless msg.nil?
-        #sender.reply({text: "Hey"})
-        # Commented because was generating an infinite loop
-        # Uncomment to continue
         analyze_request(msg, sender, session)
       end
     end
