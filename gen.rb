@@ -1,7 +1,10 @@
-# require 'open-uri'
-# require 'net/https'
-# require 'json'
-# require 'rest-client'
+require 'open-uri'
+require 'net/https'
+require 'json'
+require 'rest-client'
+require 'awesome_print'
+require 'oj'
+require 'mechanize'
 
 # # class GenericTemplate
 # #   def initialize
@@ -251,3 +254,23 @@
  #       context["intent"] = parameter
  #    end
  #  end
+ #url =
+concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+response.each do |c|
+  p c["displayName"]
+  p c["venue"]["displayName"]
+end
+
+artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=JuliannaBarwick&apikey=h76Z5PDgOid28Zly"
+response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
+p response
+ #h76Z5PDgOid28Zly
+
+ a = Mechanize.new { |agent|
+  agent.user_agent_alias = 'Mac Safari'
+}
+
+a.get(response) do |page|
+  p page.search(".artist-profile-image")
+end
