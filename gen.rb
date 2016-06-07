@@ -255,22 +255,80 @@ require 'mechanize'
  #    end
  #  end
  #url =
+
+
+
+
+
+#SEARCH FOR EVENTS BY METRO AREAS
 concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
 response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+# p response
 response.each do |c|
-  p c["displayName"]
-  p c["venue"]["displayName"]
+  # p c["displayName"]
+  # p c["venue"]["displayName"]
 end
 
+
+
+
+
+#ARTIST SEARCH API IN ORDER TO EXTRACT ITS MAIN PICTURE
 artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=JuliannaBarwick&apikey=h76Z5PDgOid28Zly"
 response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
-p response
- #h76Z5PDgOid28Zly
+# p response
 
+ #SCRAPPING THE ARTIST PAGE IN ORDER TO EXTRACT THE ARTIST PROFIL IMAGE
  a = Mechanize.new { |agent|
   agent.user_agent_alias = 'Mac Safari'
 }
 
 a.get(response) do |page|
-  p page.search(".artist-profile-image")
+  # p page.search(".artist-profile-image")
 end
+
+
+
+
+
+
+#SEARCH FOR EVENTS BY VENUES
+concert_url = "http://api.songkick.com/api/3.0/venues/6239/calendar.json?apikey=h76Z5PDgOid28Zly"
+response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+response.each do |c|
+  # p c["displayName"]
+  # p c["start"]["datetime"]
+  # p c["venue"]["displayName"]
+end
+
+
+
+
+
+#SEARCH FOR ARTISTS_ID BASED ON HIS/HER NAME
+artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=JuliannaBarwick&apikey=h76Z5PDgOid28Zly"
+response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]
+# p response
+# response.each do |c|
+#   p c["id"]
+# end
+
+
+
+
+
+
+#SEARCH FOR VENUES BY NAME
+venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=O2AcademyBrixton&apikey={h76Z5PDgOid28Zly}"
+response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0]
+# p response
+
+
+
+
+
+
+#SEARCH FOR VENUES BY GPS COORDINATES
+venue_url = "http://api.songkick.com/api/3.0/search/venues.json?location=geo:{51.49209, -0.10567}&apikey={h76Z5PDgOid28Zly}"
+response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][1..30]
+p response
