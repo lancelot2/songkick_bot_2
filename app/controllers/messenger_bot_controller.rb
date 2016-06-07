@@ -10,7 +10,7 @@ class MessengerBotController < ApplicationController
     update_context(msg, session, sender)
     username = sender.get_profile[:body]["first_name"]
     sender.reply({text: "coucou"})
-    # answer(session, username, sender, msg)
+    answer(session, username, sender, msg)
   end
 
   def find_address(lat, long)
