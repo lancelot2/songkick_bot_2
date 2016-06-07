@@ -31,6 +31,8 @@ end
 # Method for figuring out which parameter has been selected by the user
 def entities_determination(msg, context, parameter)
   # Complete keyword array with bot specific keywords
+  p "ENTITIES DETERMINATION"
+  p parameter
   countries = [["US", "USA", "States", "America", "United States"], ["UK", "Great Britain", "United Kingdom", "England", "Scotland"], ["Europe", "France", "Germany", "Holland", "Danemark", "Sweden", "Spain", "Ireland", "Italy", "Hungary"]]
   usa_cities = [["San Francisco", "SF"], ["Los Angeles", "LA"], ["New York", "New-York", "NY", "NYC"], ["Portland"], ["Washington"], ["Philadelphia"], ["Seattle"], ["Chicago"], ["Orlando"], ["Pittsburg"]]
   uk_cities = [["London", "ldn"], ["Manchester"], ["Glasgow"], ["Edinburgh"], ["Birmingham"], ["Newcastle"], ["Bristol"], ["Belfast"], ["Brighton"], ["Liverpool"]]
@@ -44,7 +46,7 @@ def entities_determination(msg, context, parameter)
        context["intent"] = parameter
     end
   end
-  context
+  p context
 end
 
 def address_formatting(msg, session)
