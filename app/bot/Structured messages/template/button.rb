@@ -36,3 +36,31 @@ class ButtonTemplate
         return @template
     end
 end
+
+
+class Button
+    def initialize(text='')
+      @template = {}
+    end
+    # def add_web_url(title='', url='')
+    #   web_url_button = {}
+    #   web_url_button['type'] = 'web_url'
+    #   web_url_button['title'] = title
+    #   web_url_button['url'] = url
+    #   @template['attachment']['payload']['buttons'] << (web_url_button)
+    # end
+
+    def add_postback(title='', payload='')
+      @template['type'] = 'postback'
+      @template['title'] = title
+      @template['payload'] = payload
+    end
+
+    # def set_text(text='')
+    #   @text = text
+    # end
+
+    def get_message
+      return @template
+    end
+end
