@@ -1,2 +1,1 @@
-# Method of allowing the user to pick between 2 different of listings
-
+# Method of allowing the user to share his/her location and get a carousel of the nearest venues
