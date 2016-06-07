@@ -1,8 +1,6 @@
 # manage to determinate which intent has the user requested to see
 def intent_determination(msg, context, sender, session)
-  p "PREVIOUS CONTEXT"
   previous_context = context.clone
-  p previous_context
   keywords = [["help"],
               ["bye"],
               ["exit"],
@@ -21,9 +19,6 @@ def intent_determination(msg, context, sender, session)
       context["intent"] = array.first
     end
   end
-
-  p "CONTEXT"
-  p context
   context
 end
 
@@ -42,6 +37,8 @@ def entities_determination(msg, context, parameter)
   tokenized_array = msg.downcase.split
   keywords.each do |array|
     if (tokenized_array & array).any?
+      p "FIRST ARRAY"
+       p array.first
        context[parameter] = array.first
        context["intent"] = parameter
     end
