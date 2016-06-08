@@ -1,5 +1,6 @@
 # Method of allowing the user to share his/her location and get a carousel of the nearest venues
-def choose_location(session,sender)
+def choose_location(session, sender)
+  p "CHOOSE LOCATION"
   geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{context['lat']},#{context['lng']}&apikey=h76Z5PDgOid28Zly"
   p geo_loc
   locations =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
