@@ -286,20 +286,27 @@ require 'mechanize'
 
 # area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=san francisco&apikey=h76Z5PDgOid28Zly"
 # p area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"]
-lat = "51.5078"
-lng = "-0.128"
-geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
-p geo_loc
-response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
-response.each do |r|
-  ap r["city"]["displayName"]
-end
-# concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
-# p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
+# lat = "51.5078"
+# lng = "-0.128"
+# geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
+# p geo_loc
+# response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
+# response.each do |r|
+#   ap r["city"]["displayName"]
+# end
+
+
+
+# concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+# concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..15]
 # concerts.each do |c|
-#   p c["performance"].first["artist"]["uri"]
-#   p c["displayName"]
-#   p c["venue"]["displayName"]
+#   # p c["performance"].first["artist"]["uri"]
+#   # p c["displayName"]
+#   # p c["venue"]["displayName"]
+#   p c["start"]["datetime"].class
+#   p DateTime.parse(c["start"]["datetime"]).class
+#   p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
+#   # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
 #   a = Mechanize.new { |agent|
 #     agent.user_agent_alias = 'Mac Safari'
 #   }
