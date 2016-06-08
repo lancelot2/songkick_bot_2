@@ -35,3 +35,4 @@ en:
   restart-requested: "Roger that ! If ever we are missing something, one of our agents will be in touch with you"
   lost: "Please hold on a few seconds, while I analyse your last message."
   collecting-user-location: "Sounds good! Send us your location, using the [...] button, or type your city and we'll show you the closest stores"
+  share-location: "Please share your location so we can show you the closest venues"

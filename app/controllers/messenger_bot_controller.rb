@@ -42,6 +42,8 @@ class MessengerBotController < ApplicationController
             if event["message"]["attachments"][0]["payload"]["coordinates"]
               latitude = event["message"]["attachments"][0]["payload"]["coordinates"]["lat"]
               longitude = event["message"]["attachments"][0]["payload"]["coordinates"]["long"]
+              session.context["lat"] = latitude
+              session.context["lng"] = longitude
               session.context["location"] = find_address(latitude, longitude)
               session.save
               msg = "address_received"

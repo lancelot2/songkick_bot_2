@@ -9,11 +9,13 @@ def intent_determination(msg, context, sender, session)
               ["no", "nope", "fuck", "off", "bye", "fuckoff"],
               ["yes", "yeah", "yep"],
               ["country", "countries", "city", "cities"],
-              ["venues", "venue"],
+              ["venue", "venues"],
               ["artists", "artist"]]
 
   tokenized_array = msg.downcase.split
-
+  if previous_context["intent"] == "venue"
+    context["intent"] = "get_venues"
+  end
   keywords.each do |array|
     if (tokenized_array & array).any?
       context["intent"] = array.first
