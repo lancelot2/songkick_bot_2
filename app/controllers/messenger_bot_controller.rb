@@ -44,6 +44,7 @@ class MessengerBotController < ApplicationController
               longitude = event["message"]["attachments"][0]["payload"]["coordinates"]["long"]
               session.context["lat"] = latitude
               session.context["lng"] = longitude
+              p context
             end
            end
         else
@@ -60,6 +61,7 @@ class MessengerBotController < ApplicationController
         end
       end
       unless msg.nil?
+        p "ANALYSE"
         analyze_request(msg, sender, session)
       end
     end
