@@ -7,14 +7,15 @@ def add_concert_card(concert, structured_reply)
     }
     a.get(concert["performance"].first["artist"]["uri"]) do |page|
       image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-    end
-  info_button = Button.new
+      info_button = Button.new
   info_button.add_postback("Check artist", "iD: info")
   stock_button = Button.new
   stock_button.add_postback("Check venue", "iD: stock")
   pictures_button = Button.new
   pictures_button.add_postback("Buy tickets", "iD: pictures")
   structured_reply.add_element(concert["displayName"], "", image_url, "10", [info_button.get_message, pictures_button.get_message, stock_button.get_message])
+    end
+
   structured_reply
 end
 
