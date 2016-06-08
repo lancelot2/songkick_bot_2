@@ -292,7 +292,7 @@ geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51
 p geo_loc
 response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
 response.each do |r|
-  ap r
+  ap r["city"]["displayName"]
 end
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
