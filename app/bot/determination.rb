@@ -18,10 +18,6 @@ def intent_determination(msg, context, sender, session)
       context["intent"] = array.first
     end
   end
-
-  if previous_context["intent"] == "venue"
-    context["intent"] = "get_venues"
-  end
   context
 end
 

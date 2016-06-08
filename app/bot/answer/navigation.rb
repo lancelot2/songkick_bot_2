@@ -40,6 +40,8 @@ def navigation(session, username, sender, msg = "")
     cta_intent_message(session, sender)
   elsif context["intent"] == "venue"
     sender.reply({text: t('share-location')})
+    context["intent"] = "get_venues"
+    session.update(context: context)
   elsif context["intent"] == "get_venues"
     sender.reply({text: context["lng"]})
     #choose_location(session, sender)
