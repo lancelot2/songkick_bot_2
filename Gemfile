@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'messenger-bot'
 gem 'commonregex'
 gem 'geocoder'
+gem 'mechanize'
 #gem 'rack-cors', :require => 'rack/cors'
 
 # Use ActiveModel has_secure_password
