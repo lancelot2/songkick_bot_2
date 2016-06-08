@@ -1,7 +1,7 @@
 def navigation(session, username, sender, msg = "")
   context = session.context
   if context["intent"].nil?
-    sender.reply({text: t('navigation-intro-1')})
+    sender.reply({text: t('navigation-intro-1', username: username)
     transfer_middle_office(session.id, sender, "hey")
     sleep(3)
     sender.reply({text: t('navigation-intro-2')})

@@ -24,7 +24,7 @@ en:
   receipt-intro: "Thanks for your purchase! Here is your receipt:"
   receipt-conclusion: "If ever we are missing something, one of our agents will be in touch with you"
   collecting-user-logistic-info: "Great ! Can you give me your street address ? "
-  navigation-intro-1: "Hi, #{username}, Welcome to SongKick bot !!"
+  navigation-intro-1: "Hi %{username}, Welcome to our SongKick bot !!"
   navigation-intro-2: "It is the easiest way to checkout gigs happening around you"
   navigation-intro-3: "If you feel lucky, try to type directly your city, a venue or an artist. ;-)"
   navigation-intro-4: "Are you ready ?"
