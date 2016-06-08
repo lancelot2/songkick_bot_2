@@ -320,13 +320,13 @@ require 'mechanize'
 # response
  #h76Z5PDgOid28Zly
 
-#  a = Mechanize.new { |agent|
-#   agent.user_agent_alias = 'Mac Safari'
-# }
+ a = Mechanize.new { |agent|
+  agent.user_agent_alias = 'Mac Safari'
+}
 
-# a.get("http://www.songkick.com/artists/8784699-deejay-disco?utm_source=40852&utm_medium=partner") do |page|
-#   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-# end
+a.get("http://www.songkick.com/leaderboards/popular_artists") do |page|
+  ap page.search(".name")[20..30].children
+end
 
 
 
