@@ -12,7 +12,7 @@
 #   elsif context["intent"] == "pickup"
 #     Purchase.create(order_id: session.order_id, item_id: context["product_id"])
 #     checkout_or_browse(session, sender)
-#     context["products_showed"] = 0
+#     context["concerts_showed"] = 0
 #     session.update(context: context)
 #   elsif context["intent"] == "get_location"
 #     sender.reply({text: t('collecting-user-location')})
