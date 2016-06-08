@@ -44,6 +44,7 @@ class MessengerBotController < ApplicationController
               longitude = event["message"]["attachments"][0]["payload"]["coordinates"]["long"]
               session.context["lat"] = latitude
               session.context["lng"] = longitude
+            end
            end
         else
           if event["message"]["attachments"][0]["payload"]
