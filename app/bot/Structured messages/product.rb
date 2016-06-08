@@ -1,11 +1,20 @@
 def add_concert_card(concert, structured_reply)
+    concert["performance"].first["artist"]["uri"]
+    concert["displayName"]
+    concert["venue"]["displayName"]
+    a = Mechanize.new { |agent|
+      agent.user_agent_alias = 'Mac Safari'
+    }
+    a.get(concert["performance"].first["artist"]["uri"]) do |page|
+      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+    end
   info_button = Button.new
-  info_button.add_postback("Check artist", "#{concert["id"]}: info")
+  info_button.add_postback("Check artist", "iD: info")
   stock_button = Button.new
-  stock_button.add_postback("Check venue", "#{concert["id"]}: stock")
+  stock_button.add_postback("Check venue", "iD: stock")
   pictures_button = Button.new
-  pictures_button.add_postback("Buy tickets", "#{concert["id"]}: pictures")
-  structured_reply.add_element(event["displayName"], "", concert["images"].first["src"], "#{concert["variants"].first["price"]}$", [info_button.get_message, pictures_button.get_message, stock_button.get_message])
+  pictures_button.add_postback("Buy tickets", "iD: pictures")
+  structured_reply.add_element(concert["displayName"], "", image_url, "10", [info_button.get_message, pictures_button.get_message, stock_button.get_message])
   structured_reply
 end
 
@@ -70,8 +79,8 @@ end
 def less_than_9_concerts(session, concerts, sender, structured_reply)
   p "MOINS DE 9"
   context = session.context
-  p concerts["concerts"].count
-  concerts["concerts"][0..9].each do |concert|
+  p concerts.count
+  concerts[0..9].each do |concert|
     add_concert_card(concert, structured_reply)
   end
   last_card(session, structured_reply, 8)
@@ -82,7 +91,7 @@ end
 ########## DISPLAY concertS WHEN THERE ARE MORE THAN 9 concertS LEFT TO DISPLAY ##########
 def more_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
   context = session.context
-  concerts["concerts"][concerts_showed..(concerts_showed + 8)].each do |concert|
+  concerts[concerts_showed..(concerts_showed + 8)].each do |concert|
     add_concert_card(concert, structured_reply)
   end
   p "PB CONTEXT"
@@ -93,7 +102,7 @@ end
 ########## DISPLAY concertS WHEN THERE ARE LESS THAN 9 concertS LEFT TO DISPLAY ##########
 def less_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
   context = session.context
-  concerts["concerts"][concerts_showed..(concerts_showed + 9)].each do |concert|
+  concerts[concerts_showed..(concerts_showed + 9)].each do |concert|
     add_concert_card(concert, structured_reply)
   end
   last_card(session, structured_reply, 8)
@@ -106,11 +115,11 @@ def generic_template_message(session, concerts, sender, context, msg)
   queries = session.queries.map{|q| q.attr}
 
   structured_reply = GenericTemplate.new
-  if concerts["concerts"].length < 9
+  if concerts.length < 9
     less_than_9_concerts(session, concerts, sender, structured_reply)
   else
     concerts_showed = context["concerts_showed"] * 9
-    concerts_left = concerts["concerts"].count - (context["concerts_showed"] * 9)
+    concerts_left = concerts.count - (context["concerts_showed"] * 9)
     if concerts_left > 9
       more_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
     elsif concerts_left > 0

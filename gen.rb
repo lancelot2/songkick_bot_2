@@ -284,22 +284,27 @@ require 'mechanize'
 # response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][1..30]
 # p response
 
- #url =
-# area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=sf&apikey=h76Z5PDgOid28Zly"
-# p area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
+area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=sf&apikey=h76Z5PDgOid28Zly"
+area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
 
-# concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
-# p response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
-# response.each do |c|
+concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
+p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
+# concerts.each do |c|
 #   p c["performance"].first["artist"]["uri"]
 #   p c["displayName"]
 #   p c["venue"]["displayName"]
+#   a = Mechanize.new { |agent|
+#     agent.user_agent_alias = 'Mac Safari'
+#   }
+#   a.get(c["performance"].first["artist"]["uri"]) do |page|
+#     ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+#   end
 # end
 
-# # artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
-# # response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
-# # response
-#  #h76Z5PDgOid28Zly
+# artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
+# response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
+# response
+ #h76Z5PDgOid28Zly
 
 #  a = Mechanize.new { |agent|
 #   agent.user_agent_alias = 'Mac Safari'
