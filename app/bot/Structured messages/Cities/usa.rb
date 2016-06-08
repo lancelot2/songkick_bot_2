@@ -1,49 +1,50 @@
 # method for laying out the 10 cities available in the UK
 
-def uk(sender)
+def usa(sender)
   structured_reply = GenericTemplate.new
 
-  london_button = Button.new
-  london_button.add_postback("Concerts in London","London")
-  structured_reply.add_element("London", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712875/SongKick/london.png", "", [london_button.get_message] )
+  structured_reply = GenericTemplate.new
 
-  manchester_button = Button.new
-  manchester_button.add_postback("Concerts in Manchester","Manchester")
-  structured_reply.add_element("Manchester", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712878/SongKick/manchester.png", "", [manchester_button.get_message] )
+  san_francisco_button = Button.new
+  san_francisco_button.add_postback("View concerts in SF","San Francisco")
+  structured_reply.add_element("San Francisco", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712851/SongKick/san_francisco.png", "", [san_francisco_button.get_message] )
 
-  glasgow_button = Button.new
-  glasgow_button.add_postback("Concerts in Glasgow","Glasgow")
-  structured_reply.add_element("Glasgow", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712872/SongKick/glasgow.png", "", [glasgow_button.get_message] )
+  los_angeles_button = Button.new
+  los_angeles_button.add_postback("View concerts in LA","Los Angeles")
+  structured_reply.add_element("Los Angeles", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712876/SongKick/los_angeles.png", "", [los_angeles_button.get_message] )
 
-  edinburgh_button = Button.new
-  edinburgh_button.add_postback("Concerts in Edinburgh","Edinburgh")
-  structured_reply.add_element("Edinburgh", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712871/SongKick/edinburgh.png", "", [edinburgh_button.get_message] )
+  new_york_button = Button.new
+  new_york_button.add_postback("View concerts in NYC","New York")
+  structured_reply.add_element("New York", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712879/SongKick/new_york.png", "", [new_york_button.get_message] )
 
-  birmingham_button = Button.new
-  birmingham_button.add_postback("Concerts in Birmingham","Birmingham")
-  structured_reply.add_element("Birmingham", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712858/SongKick/birmingham.png", "", [birmingham_button.get_message] )
+  portland_button = Button.new
+  portland_button.add_postback("View concerts in Portland","Portland")
+  structured_reply.add_element("Portland", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712886/SongKick/portland.png", "", [portland_button.get_message] )
 
-  newcastle_button = Button.new
-  newcastle_button.add_postback("Concerts in Newcastle","Newcastle")
-  structured_reply.add_element("Newcastle", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712880/SongKick/newcastle.png", "", [newcastle_button.get_message] )
+  washington_button = Button.new
+  washington_button.add_postback("View concerts in Washington","Washington")
+  structured_reply.add_element("Washington", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712864/SongKick/washington.png", "", [washington_button.get_message] )
 
-  bristol_button = Button.new
-  bristol_button.add_postback("Concerts in Bristol","Bristol")
-  structured_reply.add_element("Bristol", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712868/SongKick/bristol.png", "", [bristol_button.get_message] )
+  philadelphia_button = Button.new
+  philadelphia_button.add_postback("View concerts in Philly","Philadelphia")
+  structured_reply.add_element("Philadelphia", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712884/SongKick/philadelphia.png", "", [philadelphia_button.get_message] )
 
-  belfast_button = Button.new
-  belfast_button.add_postback("Concerts in Belfast","Belfast")
-  structured_reply.add_element("Belfast", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712855/SongKick/belfast.png", "", [belfast_button.get_message] )
+  seattle_button = Button.new
+  seattle_button.add_postback("View concerts in Seattle","Seattle")
+  structured_reply.add_element("Seattle", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712892/SongKick/seattle.png", "", [seattle_button.get_message] )
 
-  brighton_button = Button.new
-  brighton_button.add_postback("Concerts in Brighton","Brighton")
-  structured_reply.add_element("Brighton", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712859/SongKick/brighton.png", "", [brighton_button.get_message] )
+  chicago_button = Button.new
+  chicago_button.add_postback("View concerts in Chicago","Chicago")
+  structured_reply.add_element("Chicago", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712862/SongKick/chicago.png", "", [chicago_button.get_message] )
 
-  liverpool_button = Button.new
-  liverpool_button.add_postback("Concerts in Liverpool","Liverpool")
-  structured_reply.add_element("Liverpool", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712873/SongKick/liverpool.png", "", [liverpool_button.get_message] )
+  orlando_button = Button.new
+  orlando_button.add_postback("View concerts in Orlando","Orlando")
+  structured_reply.add_element("Orlando", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712882/SongKick/orlando.png", "", [orlando_button.get_message] )
+
+  pittsburg_button = Button.new
+  pittsburg_button.add_postback("View concerts in Pittsburg","Pittsburg")
+  structured_reply.add_element("Pittsburg", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712890/SongKick/pittsburg.png", "", [pittsburg_button.get_message] )
 
   reply_transfer(session, sender, structured_reply)
 end
-
 
