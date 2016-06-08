@@ -242,35 +242,92 @@ require 'mechanize'
  #  p keywords
  #  p 'ENTITIES DETERMINATION'
 
+# ​
+# #SEARCH FOR EVENTS BY VENUES
+# concert_url = "http://api.songkick.com/api/3.0/venues/6239/calendar.json?apikey=h76Z5PDgOid28Zly"
+# response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+# response.each do |c|
+#   # p c["displayName"]
+#   # p c["start"]["datetime"]
+#   # p c["venue"]["displayName"]
+# end
+# ​
+# ​
+# ​
+# ​
+# ​
+# #SEARCH FOR ARTISTS_ID BASED ON HIS/HER NAME
+# artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=JuliannaBarwick&apikey=h76Z5PDgOid28Zly"
+# response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]
+# # p response
+# # response.each do |c|
+# #   p c["id"]
+# # end
+# ​
+# ​
+# ​
+# ​
+# ​
+# ​
+# #SEARCH FOR VENUES BY NAME
+# venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=O2AcademyBrixton&apikey={h76Z5PDgOid28Zly}"
+# response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0]
+# # p response
+# ​
+# ​
+# ​
+# ​
+# ​
+# ​
+# #SEARCH FOR VENUES BY GPS COORDINATES
+# venue_url = "http://api.songkick.com/api/3.0/search/venues.json?location=geo:{51.49209, -0.10567}&apikey={h76Z5PDgOid28Zly}"
+# response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][1..30]
+# p response
 
- #  tokenized_array = msg.downcase.split
- #  p tokenized_array
- #  keywords.each do |array|
- #    p array
- #    if (tokenized_array & array).any?
- #       p "FIRST ARRAY"
- #       p array.first
- #       context[parameter] = array.first
- #       context["intent"] = parameter
- #    end
- #  end
  #url =
-concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
-response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
-response.each do |c|
-  p c["displayName"]
-  p c["venue"]["displayName"]
-end
+# area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=sf&apikey=h76Z5PDgOid28Zly"
+# p area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
 
-artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
-response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
-p response
- #h76Z5PDgOid28Zly
+# concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
+# p response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+# response.each do |c|
+#   p c["performance"].first["artist"]["uri"]
+#   p c["displayName"]
+#   p c["venue"]["displayName"]
+# end
 
- a = Mechanize.new { |agent|
-  agent.user_agent_alias = 'Mac Safari'
-}
+# # artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
+# # response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
+# # response
+#  #h76Z5PDgOid28Zly
 
-a.get(response) do |page|
-  ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-end
+#  a = Mechanize.new { |agent|
+#   agent.user_agent_alias = 'Mac Safari'
+# }
+
+# a.get("http://www.songkick.com/artists/8784699-deejay-disco?utm_source=40852&utm_medium=partner") do |page|
+#   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+# end
+
+
+
+
+##################################################################
+# context= {}
+# msg = "San Francisco"
+# countries = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
+#   usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
+#   uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
+#   european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
+#   keywords = countries + usa_cities + uk_cities + european_cities
+#   tokenized_array = msg.downcase.split
+#   keywords.each do |array|
+#     p array
+#     p tokenized_array
+#     if (tokenized_array & array).any?
+#        p "FIRST ARRAY"
+#        p array.first
+#        context[parameter] = array.first
+#        context["intent"] = parameter
+#     end
+#   end

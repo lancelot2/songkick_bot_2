@@ -1,19 +1,18 @@
 # method for laying out the 10 cities available in the US
 
 def usa(sender)
-  p 'JE SUIS LA'
   structured_reply = GenericTemplate.new
 
   san_francisco_button = Button.new
-  san_francisco_button.add_postback("Concerts in SF","San Francisco")
+  san_francisco_button.add_postback("Concerts in SF","Sf")
   structured_reply.add_element("San Francisco", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712851/SongKick/san_francisco.png", "", [san_francisco_button.get_message] )
 
   los_angeles_button = Button.new
-  los_angeles_button.add_postback("Concerts in LA","Los Angeles")
+  los_angeles_button.add_postback("Concerts in LA","La")
   structured_reply.add_element("Los Angeles", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712876/SongKick/los_angeles.png", "", [los_angeles_button.get_message] )
 
   new_york_button = Button.new
-  new_york_button.add_postback("Concerts in NYC","New York")
+  new_york_button.add_postback("Concerts in NYC","Ny")
   structured_reply.add_element("New York", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712879/SongKick/new_york.png", "", [new_york_button.get_message] )
 
   portland_button = Button.new
