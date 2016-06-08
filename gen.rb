@@ -331,3 +331,8 @@ require 'mechanize'
 #        context["intent"] = parameter
 #     end
 #   end
+a = 'eee'
+b = "fff"
+array = [a, b]
+ array.find(eval("a"))
+p eval("a")

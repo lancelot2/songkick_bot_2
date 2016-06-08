@@ -26,12 +26,12 @@ end
 # Method for figuring out which parameter has been selected by the user
 def entities_determination(msg, context, parameter)
   # Complete keyword array with bot specific keywords
-  countries = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
+  country = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
   usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
   uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
   european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
-  keywords = countries + usa_cities + uk_cities + european_cities
-  p keywords
+  city = usa_cities + uk_cities + european_cities
+  keywords = eval(parameter)
   p 'ENTITIES DETERMINATION'
   p msg
   p context
@@ -39,10 +39,10 @@ def entities_determination(msg, context, parameter)
   tokenized_array = msg.downcase.split
   keywords.each do |array|
     if (tokenized_array & array).any?
-       p "FIRST ARRAY"
-       p array.first
-       context[parameter] = array.first
-       context["intent"] = parameter
+      p "FIRST ARRAY"
+      p array.first
+      context[parameter] = array.first
+      context["intent"] = parameter
     end
   end
   p "UPDATED CONTEXT"
