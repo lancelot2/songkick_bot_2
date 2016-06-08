@@ -299,6 +299,25 @@ require 'mechanize'
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
 # concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..15]
 
+
+concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..5]
+
+concerts.each do |c|
+  # p c["performance"].first["artist"]["uri"]
+  # p c["displayName"]
+  # p c["venue"]["displayName"]
+  p c["start"]["datetime"].class
+  p DateTime.parse(c["start"]["datetime"]).class
+  p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
+  # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
+  a.get(c["performance"].first["artist"]["uri"]) do |page|
+    ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+  end
+end
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
 
@@ -317,6 +336,7 @@ require 'mechanize'
 #     ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
 #   end
 # end
+
 
 # # artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
 # # response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
