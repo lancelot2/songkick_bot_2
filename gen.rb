@@ -294,12 +294,22 @@ require 'mechanize'
 # response.each do |r|
 #   ap r["city"]["displayName"]
 # end
+
+
+# concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+# concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..15]
+
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
+
 # concerts.each do |c|
-#   p c["performance"].first["artist"]["uri"]
-#   p c["displayName"]
-#   p c["venue"]["displayName"]
+#   # p c["performance"].first["artist"]["uri"]
+#   # p c["displayName"]
+#   # p c["venue"]["displayName"]
+#   p c["start"]["datetime"].class
+#   p DateTime.parse(c["start"]["datetime"]).class
+#   p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
+#   # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
 #   a = Mechanize.new { |agent|
 #     agent.user_agent_alias = 'Mac Safari'
 #   }
@@ -313,13 +323,13 @@ require 'mechanize'
 # response
  #h76Z5PDgOid28Zly
 
-#  a = Mechanize.new { |agent|
-#   agent.user_agent_alias = 'Mac Safari'
-# }
+ a = Mechanize.new { |agent|
+  agent.user_agent_alias = 'Mac Safari'
+}
 
-# a.get("http://www.songkick.com/artists/8784699-deejay-disco?utm_source=40852&utm_medium=partner") do |page|
-#   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-# end
+a.get("http://www.songkick.com/leaderboards/popular_artists") do |page|
+  ap page.search(".name")[20..30].children
+end
 
 
 
