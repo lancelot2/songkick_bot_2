@@ -37,15 +37,6 @@ class MessengerBotController < ApplicationController
         if event["message"]["attachments"].first["title"].nil?
           sender.reply({text: "Sorry but we can't process images (yet :-) )"})
           transfer_middle_office(session.id, sender, "Sorry but we can't process images (yet :-) )")
-        elsif params["entry"][0]["messaging"].present?
-           params["entry"][0]["messaging"].each do |msg|
-            if msg["message"]["attachments"].present? && msg["message"]["attachments"].first["payload"]["coordinates"].present?
-                  latitude = event["message"]["attachments"][0]["payload"]["coordinates"]["lat"]
-              longitude = event["message"]["attachments"][0]["payload"]["coordinates"]["long"]
-              session.context["lat"] = latitude
-              session.context["lng"] = longitude
-            end
-           end
         else
           if event["message"]["attachments"][0]["payload"]
             if event["message"]["attachments"][0]["payload"]["coordinates"]
@@ -60,6 +51,7 @@ class MessengerBotController < ApplicationController
         end
       end
       unless msg.nil?
+        p "ANALYSE"
         analyze_request(msg, sender, session)
       end
     end
