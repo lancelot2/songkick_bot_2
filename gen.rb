@@ -262,7 +262,7 @@ response.each do |c|
   p c["venue"]["displayName"]
 end
 
-artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=JuliannaBarwick&apikey=h76Z5PDgOid28Zly"
+artist_url = "http://api.songkick.com/api/3.0/search/artists.json?query=Rich Stephenson&apikey=h76Z5PDgOid28Zly"
 response =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"][0]["uri"]
 p response
  #h76Z5PDgOid28Zly
@@ -272,5 +272,5 @@ p response
 }
 
 a.get(response) do |page|
-  p page.search(".artist-profile-image")
+  ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
 end
