@@ -286,14 +286,14 @@ require 'mechanize'
 
 # area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=san francisco&apikey=h76Z5PDgOid28Zly"
 # p area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"]
-lat = "51.5078"
-lng = "-0.128"
-geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
-p geo_loc
-response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
-response.each do |r|
-  ap r["city"]["displayName"]
-end
+# lat = "51.5078"
+# lng = "-0.128"
+# geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
+# p geo_loc
+# response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
+# response.each do |r|
+#   ap r["city"]["displayName"]
+# end
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
 # concerts.each do |c|
@@ -348,3 +348,7 @@ end
  #  end
  #  p "UPDATED CONTEXT"
  #  p context
+
+ #hash = {"object"=>"page", "entry"=>[{"id"=>"1767651676814105", "time"=>1465390250936, "messaging"=>[{"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390219801, "message"=>{"mid"=>"mid.1465390219798:2270a22c43baa22514", "seq"=>8686, "text"=>"Hey"}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390222663, "read"=>{"watermark"=>1465390222401, "seq"=>8689}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390226788, "read"=>{"watermark"=>1465390226515, "seq"=>8692}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390230850, "read"=>{"watermark"=>1465390230599, "seq"=>8695}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390236289, "read"=>{"watermark"=>1465390236042, "seq"=>8698}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390237029, "read"=>{"watermark"=>1465390236608, "seq"=>8701}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390240890, "read"=>{"watermark"=>1465390240698, "seq"=>8706}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390241212, "read"=>{"watermark"=>1465390240704, "seq"=>8708}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390243470, "message"=>{"mid"=>"mid.1465390242729:d41703dd165b96bf84", "seq"=>8709, "attachments"=>[{"title"=>"Matthias's Location", "url"=>"https://www.facebook.com/l.php?u=https%3A%2F%2Fwww.bing.com%2Fmaps%2Fdefault.aspx%3Fv%3D2%26pc%3DFACEBK%26mid%3D8100%26where1%3D48.856127617382%252C%2B2.3856524838621%26FORM%3DFBKPL1%26mkt%3Den-US&h=SAQGj3UGM&s=1&enc=AZOESASMT5b3TGkFAJZHf_CF70qjAmYMwBbiN4QWasK5_FNzsFJzz41baZUcDvTt4D3JNEJUO7W6409vWNXYm6nLtcU_pzaLMW-VI3BBWDV9vA", "type"=>"location", "payload"=>{"coordinates"=>{"lat"=>48.856127617382, "long"=>2.3856524838621}}}]}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390245217, "read"=>{"watermark"=>1465390244933, "seq"=>8712}}]}], "station"=>{"object"=>"page", "entry"=>[{"id"=>"1767651676814105", "time"=>1465390250936, "messaging"=>[{"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390219801, "message"=>{"mid"=>"mid.1465390219798:2270a22c43baa22514", "seq"=>8686, "text"=>"Hey"}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390222663, "read"=>{"watermark"=>1465390222401, "seq"=>8689}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390226788, "read"=>{"watermark"=>1465390226515, "seq"=>8692}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390230850, "read"=>{"watermark"=>1465390230599, "seq"=>8695}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390236289, "read"=>{"watermark"=>1465390236042, "seq"=>8698}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390237029, "read"=>{"watermark"=>1465390236608, "seq"=>8701}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390240890, "read"=>{"watermark"=>1465390240698, "seq"=>8706}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390241212, "read"=>{"watermark"=>1465390240704, "seq"=>8708}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390243470, "message"=>{"mid"=>"mid.1465390242729:d41703dd165b96bf84", "seq"=>8709, "attachments"=>[{"title"=>"Matthias's Location", "url"=>"https://www.facebook.com/l.php?u=https%3A%2F%2Fwww.bing.com%2Fmaps%2Fdefault.aspx%3Fv%3D2%26pc%3DFACEBK%26mid%3D8100%26where1%3D48.856127617382%252C%2B2.3856524838621%26FORM%3DFBKPL1%26mkt%3Den-US&h=SAQGj3UGM&s=1&enc=AZOESASMT5b3TGkFAJZHf_CF70qjAmYMwBbiN4QWasK5_FNzsFJzz41baZUcDvTt4D3JNEJUO7W6409vWNXYm6nLtcU_pzaLMW-VI3BBWDV9vA", "type"=>"location", "payload"=>{"coordinates"=>{"lat"=>48.856127617382, "long"=>2.3856524838621}}}]}}, {"sender"=>{"id"=>"10153707824968697"}, "recipient"=>{"id"=>"1767651676814105"}, "timestamp"=>1465390245217, "read"=>{"watermark"=>1465390244933, "seq"=>8712}}]}]}}
+ p hash["entry"][0]["messaging"][8]["message"]["attachments"].first["payload"]["coordinates"]
+
