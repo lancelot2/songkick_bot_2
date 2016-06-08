@@ -41,7 +41,8 @@ def navigation(session, username, sender, msg = "")
   elsif context["intent"] == "venue"
     sender.reply({text: t('share-location')})
   elsif context["intent"] == "get_venues"
-    choose_location(session, sender)
+    sender.reply({text: context["lng"]})
+    #choose_location(session, sender)
   end
 end
 
