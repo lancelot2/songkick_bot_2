@@ -313,26 +313,26 @@ require 'mechanize'
 
 
 ##################################################################
-# context= {}
-# msg = "San Francisco"
-# countries = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
-#   usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
-#   uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
-#   european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
-#   keywords = countries + usa_cities + uk_cities + european_cities
-#   tokenized_array = msg.downcase.split
-#   keywords.each do |array|
-#     p array
-#     p tokenized_array
-#     if (tokenized_array & array).any?
-#        p "FIRST ARRAY"
-#        p array.first
-#        context[parameter] = array.first
-#        context["intent"] = parameter
-#     end
-#   end
-a = 'eee'
-b = "fff"
-array = [a, b]
- array.find(eval("a"))
-p eval("a")
+
+ # country = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
+ #  usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
+ #  uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
+ #  european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
+ #  city = usa_cities + uk_cities + european_cities
+ #  keywords = eval(parameter)
+ #  p 'ENTITIES DETERMINATION'
+ #  p parameter
+ #  p msg
+ #  p context
+
+ #  tokenized_array = msg.downcase.split
+ #  keywords.each do |array|
+ #    if (tokenized_array & array).any?
+ #      p "FIRST ARRAY"
+ #      p array.first
+ #      context[parameter] = array.first
+ #      context["intent"] = parameter
+ #    end
+ #  end
+ #  p "UPDATED CONTEXT"
+ #  p context

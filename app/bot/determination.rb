@@ -33,6 +33,7 @@ def entities_determination(msg, context, parameter)
   city = usa_cities + uk_cities + european_cities
   keywords = eval(parameter)
   p 'ENTITIES DETERMINATION'
+  p parameter
   p msg
   p context
 
