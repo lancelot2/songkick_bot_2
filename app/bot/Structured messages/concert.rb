@@ -1,7 +1,7 @@
 def add_concert_card(concert, structured_reply)
     artist_page_url = concert["performance"].first["artist"]["uri"]
     concert_name = concert["displayName"]
-    concert_date = concert["start"]["datetime"]
+    concert_date = concert["start"]["datetime"].strftime("%B%d at %l:%M%p")
     venue_name = concert["venue"]["displayName"]
     a = Mechanize.new { |agent|
       agent.user_agent_alias = 'Mac Safari'
