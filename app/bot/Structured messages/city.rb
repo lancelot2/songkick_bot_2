@@ -1,4 +1,4 @@
-def city(session)
+def city(session, sender, msg)
   context = session.context
   area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=#{context['city']}&apikey=h76Z5PDgOid28Zly"
   area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]

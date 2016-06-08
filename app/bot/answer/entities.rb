@@ -7,7 +7,7 @@ def entity(session, username, sender, msg= "", parameter)
     #products = run_query(session, msg)
     p "PARAMETER HERE"
     p parameter
-    send("city", sender)
+    send("city", session, sender, msg)
   elsif context["intent"] == parameter && context[parameter].present?
       query = Query.create(session_id: session.id, attr: parameter, value: context[parameter])
       context["products_showed"] = 0
