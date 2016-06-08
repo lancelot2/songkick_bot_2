@@ -46,6 +46,7 @@ class MessengerBotController < ApplicationController
               session.context["lng"] = longitude
               session.context["location"] = find_address(latitude, longitude)
               session.save
+              msg = "loc determination"
             end
           end
         end
