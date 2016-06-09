@@ -72,21 +72,13 @@ require "geocoder"
 # # ​
 # # ​
 # # ​
-# # #SEARCH FOR VENUES BY GPS COORDINATES
-venue_url = "http://api.songkick.com/api/3.0/search/venues.json?location=geo:{51.49209, -0.10567}&apikey={h76Z5PDgOid28Zly}"
-response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][1..30]
-p response
+ #area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=san francisco&apikey=h76Z5PDgOid28Zly"
+ #area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"]
+ lat = "51.5078"
+ lng = "-0.128"
+ geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
+ p response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
 
-#  area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=san francisco&apikey=h76Z5PDgOid28Zly"
-#  area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"]
-#  lat = "51.5078"
-#  lng = "-0.128"
-#  geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
-#   geo_loc
-#  response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..2]
-#  response.each do |r|
-#     r["city"]["displayName"]
-#  end
 
 
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"

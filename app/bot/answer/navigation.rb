@@ -40,7 +40,8 @@ def navigation(session, username, sender, msg = "")
   #   context = {}
   #   cta_intent_message(session, sender)
 elsif context["intent"] == "geolocated"
-    show_venues(session, sender, context["lat"], context["lng"])
+    context["city"] =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
+    venues_or_upcoming(session, sender)
   elsif context["intent"] == "venue"
     show_venues(session, sender)
   elsif context["intent"] == "upcoming"
