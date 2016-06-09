@@ -23,14 +23,7 @@ def intent_determination(msg, context, sender, session)
     address_formatting(msg, session)
     username = sender.get_profile[:body]["first_name"]
     entity(session, username, sender, msg, "city")
-  # elsif context["intent"] = "venue"
-  #   context["city"] =
   end
-
-  # if  == "country" && parameter == "city" && context["city"].nil?
-  #   p "SEARCH CITY"
-  #   #address_formatting(msg, session)
-  # end
   context
 end
 
@@ -45,44 +38,22 @@ def entities_determination(session, msg, context, parameter)
   european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
   city = usa_cities + uk_cities + european_cities
   keywords = eval(parameter)
-  p 'ENTITIES DETERMINATION'
-  p parameter
-  p msg
-  p context
 
   tokenized_array = msg.downcase.split
   keywords.each do |array|
     if (tokenized_array & array).any?
-      p "FIRST ARRAY"
-      p array.first
       context[parameter] = array.first
       context["intent"] = parameter
     end
   end
-
-  p "UPDATED CONTEXT"
-  p context
+  context
 end
 
 def address_formatting(msg, session)
   context = session.context
-  p "FORMATTING"
-  p msg
-  p Geocoder.search(msg)
-  search = Geocoder.search(msg)[0].data["address_components"][0]["long_name"]
-  # country = search[5]["long_name"]
-  # area = search[4]["long_name"]
-  city = search
-  p "CITY HERE"
+  city = Geocoder.search(msg)[0].data["address_components"][0]["long_name"]
   p city
-  # zipcode = search[6]["long_name"]
-  # address = search[0]["long_name"] + " " + search[1]["long_name"]
-
-  # context["country"] = country
   context["city"] = city
-  # context["zipcode"] = zipcode
-  # context["address"] = address
-  # context["area"] = area
   context["intent"] = "city"
   p context
   session.update(context: context)
