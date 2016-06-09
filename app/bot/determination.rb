@@ -60,6 +60,9 @@ end
 
 def address_formatting(msg, session)
   context = session.context
+  p "FORMATTING"
+  p "msg"
+  p Geocoder.search(msg)
   search = Geocoder.search(msg)[0].data["address_components"]
   # country = search[5]["long_name"]
   # area = search[4]["long_name"]
