@@ -8,6 +8,17 @@ require 'mechanize'
 require "geocoder"
 
 
+   context = {}
+   context["intent"] = "popular_artists"
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
+
+  a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
+    name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
+    image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+  end
+
 # # button = ReceiptTemplate.new("Matthias", "122346", "USD", "paypal", Time.now.to_i)
 # # button.add_element('Tshirt','top', "1", "10", "USD", 'https://s-media-cache-ak0.pinimg.com/736x/04/03/27/040327e01ef3f42a1eae9c4b2d1c299f.jpg')
 # # button.set_address("13 allée", "", "Paris", "75011", "IDF", "FRancse")
@@ -74,10 +85,10 @@ require "geocoder"
 # # ​
  #area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=san francisco&apikey=h76Z5PDgOid28Zly"
  #area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"]
- lat = "51.5078"
- lng = "-0.128"
- geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
- p response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
+ # lat = "51.5078"
+ # lng = "-0.128"
+ # geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:51.5078,-0.128&apikey=h76Z5PDgOid28Zly"
+ # p response =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
 
 
 

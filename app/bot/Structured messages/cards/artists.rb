@@ -1,4 +1,4 @@
-def add_artist_card(artist, structured_reply)
+def add_artist_card(page, structured_reply)
     artist_name = artist["displayName"]
     a = Mechanize.new { |agent|
       agent.user_agent_alias = 'Mac Safari'
@@ -15,4 +15,25 @@ def add_artist_card(artist, structured_reply)
     end
 
   structured_reply
+end
+
+
+def send_artists(session, sender)
+  context = session.context
+  structured_reply = GenericTemplate.new
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
+  a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
+    name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
+    image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+    artist_biography = Button.new
+    artist_biography.add_postback("Check details", "iD: artist_biography")
+    live_reviews = Button.new
+    live_reviews.add_postback("Live Reviews", "iD: live_reviews")
+    artist_upcoming_concerts = Button.new
+    artist_upcoming_concerts.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
+    structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
+  end
+  sender.reply(structured_reply.get_message)
 end
