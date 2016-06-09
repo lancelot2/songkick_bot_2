@@ -25,8 +25,8 @@ def send_artists(session, sender)
     agent.user_agent_alias = 'Mac Safari'
   }
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
-    name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
-    image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
+    p name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
+    p image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
     artist_biography_button = Button.new
     artist_biography_button.add_postback("Check details", "iD: artist_biography")
     live_reviews_button = Button.new
@@ -35,5 +35,6 @@ def send_artists(session, sender)
     artist_upcoming_concerts_button.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
     structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
   end
+  p structured_reply
   sender.reply(structured_reply.get_message)
 end

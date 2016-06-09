@@ -4,7 +4,7 @@ def artists(sender)
   structured_reply = ButtonTemplate.new
   structured_reply.set_text("How do you want to list them ?")
   structured_reply.add_postback("Most popular", "popular_artists")
-  structured_reply.add_postback("trending_artists artists", "trending_artists")
+  structured_reply.add_postback("Trending artists", "trending_artists")
   reply_transfer(session, sender, structured_reply)
 end
 
