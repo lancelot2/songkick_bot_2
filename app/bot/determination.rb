@@ -83,7 +83,7 @@ def address_formatting(msg, session)
   # context["zipcode"] = zipcode
   # context["address"] = address
   # context["area"] = area
-  context["intent"] == "city"
+  context["intent"] = "city"
   p context
   session.update(context: context)
 end
