@@ -5,7 +5,7 @@ def usa(sender)
 
   san_francisco_button = Button.new
   san_francisco_button.add_postback("View concerts in SF","sf")
-  structured_reply.add_element("San Francisco", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712851/SongKick/cities/san_francisco.png", "", [san_francisco_button.get_message] )
+  structured_reply.add_element("San Francisco", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465479573/SongKick/cities/san_francisco_3.png", "", [san_francisco_button.get_message] )
 
   los_angeles_button = Button.new
   los_angeles_button.add_postback("View concerts in LA","los angeles")
