@@ -35,6 +35,6 @@ def send_artists(session, sender)
     artist_upcoming_concerts_button.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
     structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
   end
-  p structured_reply
+  p structured_reply.get_message
   sender.reply(structured_reply.get_message)
 end
