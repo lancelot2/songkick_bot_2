@@ -19,12 +19,12 @@ def intent_determination(msg, context, sender, session)
     end
   end
 
-  if previous_context["intent"] == "venue"
-    context["intent"] = "get_venues"
-  elsif previous_context["intent"] == "country" && context["city"].nil?
+  if previous_context["intent"] == "country" && context["city"].nil?
     address_formatting(msg, session)
     username = sender.get_profile[:body]["first_name"]
     entity(session, username, sender, msg, "city")
+  # elsif context["intent"] = "venue"
+  #   context["city"] =
   end
 
   # if  == "country" && parameter == "city" && context["city"].nil?
