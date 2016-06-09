@@ -17,3 +17,9 @@ def city(session, sender, msg)
   #   end
   # end
 end
+
+
+def venues_or_upcoming(session, sender)
+  structured_reply = ButtonTemplate.new
+  structured_reply.set_text("Do you want to browse by venue or by ")
+end
