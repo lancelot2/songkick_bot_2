@@ -1,6 +1,10 @@
 # method for laying out the 3 geographical areas
 
 def country(sender)
+
+  sender.reply({text: t('city-navigation-intro')})
+  transfer_middle_office(session.id, sender, "city-navigation-intro")
+
   structured_reply = GenericTemplate.new
 
   usa_button = Button.new
