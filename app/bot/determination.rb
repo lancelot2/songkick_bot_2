@@ -23,6 +23,7 @@ def intent_determination(msg, context, sender, session)
     context["intent"] = "get_venues"
   elsif previous_context["intent"] == "country" && context["city"].nil?
     address_formatting(msg, session)
+    username = sender.get_profile[:body]["first_name"]
     entity(session, username, sender, msg, "city")
   end
 
@@ -68,7 +69,7 @@ def address_formatting(msg, session)
   p "FORMATTING"
   p "msg"
   p Geocoder.search(msg)
-  search = Geocoder.search(msg)[0].data["address_components"]
+  search = Geocoder.search(msg)[0].data["address_components"][0]["long_name"]
   # country = search[5]["long_name"]
   # area = search[4]["long_name"]
   city = search[3]["long_name"]
