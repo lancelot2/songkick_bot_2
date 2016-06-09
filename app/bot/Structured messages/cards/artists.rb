@@ -25,8 +25,8 @@ def send_artists(session, sender)
     agent.user_agent_alias = 'Mac Safari'
   }
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
-    name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
-    image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+    name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
+    image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
     artist_biography_button = Button.new
     artist_biography_button.add_postback("Check details", "iD: artist_biography")
     live_reviews_button = Button.new

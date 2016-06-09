@@ -8,7 +8,7 @@ def intent_determination(msg, context, sender, session)
               ["upcoming"],
               ["mainbrowsing"],
               ["popular_artists"],
-              ["trending"],
+              ["trending_artists"],
               ["no", "nope", "fuck", "off", "bye", "fuckoff"],
               ["yes", "yeah", "yep"],
               ["country", "countries", "city", "cities"],

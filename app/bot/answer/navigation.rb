@@ -39,7 +39,7 @@ def navigation(session, username, sender, msg = "")
   # elsif context["intent"] == "mainbrowsing"
   #   context = {}
   #   cta_intent_message(session, sender)
-  elsif context["intent"] == "popular_artists" || context["intent"] == "trending"
+  elsif context["intent"] == "popular_artists" || context["intent"] == "trending_artists"
     send_artists(session, sender)
   elsif context["intent"] == "geolocated"
     geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{context['lat']},#{context['lng']}&apikey=h76Z5PDgOid28Zly"

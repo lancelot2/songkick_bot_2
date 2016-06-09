@@ -14,7 +14,7 @@ require "geocoder"
     agent.user_agent_alias = 'Mac Safari'
   }
 
-  a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
+  a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
     name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
     image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
   end
