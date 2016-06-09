@@ -16,7 +16,7 @@ def navigation(session, username, sender, msg = "")
     transfer_middle_office(session.id, sender, t('navigation-start-validation'))
     cta_intent_message(session, sender)
   elsif context["intent"] == "stop"
-    sender.rep#ly({text: t('stop')})
+    sender.reply({text: t('stop')})
     transfer_middle_office(session.id, sender, t('stop'))
   elsif context["intent"] == "help"
     session.update(status: "human")
