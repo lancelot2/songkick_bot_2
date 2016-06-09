@@ -51,7 +51,7 @@ def entities_determination(session, msg, context, parameter)
     end
   end
 
-  if parameter == "country" && context["city"].nil?
+  if context["intent"] == "country" && parameter == "city" && context["city"].nil?
     p "SEARCH CITY"
     #address_formatting(msg, session)
   end
