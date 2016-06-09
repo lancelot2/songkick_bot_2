@@ -27,8 +27,9 @@ end
 
 
 # Method for figuring out which parameter has been selected by the user
-def entities_determination(msg, context, parameter)
+def entities_determination(session, msg, context, parameter)
   # Complete keyword array with bot specific keywords
+  previous_context = context.clone
   country = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
   usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
   uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
@@ -49,6 +50,10 @@ def entities_determination(msg, context, parameter)
       context["intent"] = parameter
     end
   end
+
+  if parameter == "country" && context["city"].nil?
+    address_formatting(msg, session)
+  end
   p "UPDATED CONTEXT"
   p context
 end
@@ -56,17 +61,17 @@ end
 def address_formatting(msg, session)
   context = session.context
   search = Geocoder.search(msg)[0].data["address_components"]
-  country = search[5]["long_name"]
-  area = search[4]["long_name"]
+  # country = search[5]["long_name"]
+  # area = search[4]["long_name"]
   city = search[3]["long_name"]
-  zipcode = search[6]["long_name"]
-  address = search[0]["long_name"] + " " + search[1]["long_name"]
+  # zipcode = search[6]["long_name"]
+  # address = search[0]["long_name"] + " " + search[1]["long_name"]
 
-  context["country"] = country
+  # context["country"] = country
   context["city"] = city
-  context["zipcode"] = zipcode
-  context["address"] = address
-  context["area"] = area
+  # context["zipcode"] = zipcode
+  # context["address"] = address
+  # context["area"] = area
 
   session.update(context: context)
 end

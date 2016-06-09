@@ -7,6 +7,7 @@ class MessengerBotController < ApplicationController
   # end
 
   def analyze_request(msg, sender, session)
+    previous_context = session.context.clone
     update_context(msg, session, sender)
     username = sender.get_profile[:body]["first_name"]
     answer(session, username, sender, msg)
