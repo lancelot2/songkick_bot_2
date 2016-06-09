@@ -26,8 +26,9 @@ def navigation(session, username, sender, msg = "")
   elsif context["intent"] == "exit"
     context = {}
     session.update(context: context)
-    sender.reply({text: t('exit-requested')})
+    sender.reply({text: t('exit-requested', username: username)})
     transfer_middle_office(session.id, sender, t('exit-requested'))
+    ImageTemplate.new(url='http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif')
   elsif context["intent"] == "restart"
     sender.reply({text: t('restart-requested')})
     transfer_middle_office(session.id, sender, t('restart-requested'))
