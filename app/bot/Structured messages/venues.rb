@@ -19,6 +19,7 @@ end
 
 
 def show_venues(session, sender)
+  context = session.context
   structured_reply = GenericTemplate.new
   venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=#{context['city']}&apikey=h76Z5PDgOid28Zly"
   response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][9]
