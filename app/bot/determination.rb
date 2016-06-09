@@ -73,6 +73,8 @@ def address_formatting(msg, session)
   # country = search[5]["long_name"]
   # area = search[4]["long_name"]
   city = search[3]["long_name"]
+  p "CITY HERE"
+  p city
   # zipcode = search[6]["long_name"]
   # address = search[0]["long_name"] + " " + search[1]["long_name"]
 
@@ -82,5 +84,6 @@ def address_formatting(msg, session)
   # context["address"] = address
   # context["area"] = area
   context["intent"] == "city"
+  p context
   session.update(context: context)
 end
