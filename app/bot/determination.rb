@@ -21,7 +21,14 @@ def intent_determination(msg, context, sender, session)
 
   if previous_context["intent"] == "venue"
     context["intent"] = "get_venues"
+  elsif previous_context["intent"] == "country" && context["city"].nil?
+     p "SEARCH CITY"
   end
+
+  # if  == "country" && parameter == "city" && context["city"].nil?
+  #   p "SEARCH CITY"
+  #   #address_formatting(msg, session)
+  # end
   context
 end
 
@@ -51,10 +58,6 @@ def entities_determination(session, msg, context, parameter)
     end
   end
 
-  if context["intent"] == "country" && parameter == "city" && context["city"].nil?
-    p "SEARCH CITY"
-    #address_formatting(msg, session)
-  end
   p "UPDATED CONTEXT"
   p context
 end

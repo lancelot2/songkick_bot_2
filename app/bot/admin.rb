@@ -2,10 +2,10 @@
 
 def update_context(msg, session, sender)
   previous_context = session.context.clone
-  session.update(context: intent_determination(msg, session.context, sender, session))
-  # Call entities_determination for each entity (brand, category ...)
   session.update(context: entities_determination(session, msg, session.context, "country"))
   session.update(context: entities_determination(session, msg, session.context, "city"))
+  session.update(context: intent_determination(msg, session.context, sender, session))
+  # Call entities_determination for each entity (brand, category ...)
   # session.update(context: entities_determination(msg, session.context, "venue"))
   # session.update(context: entities_determination(msg, session.context, "artist"))
 
