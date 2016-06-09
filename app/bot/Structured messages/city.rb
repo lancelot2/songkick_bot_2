@@ -23,7 +23,7 @@ def venues_or_upcoming(session, sender)
   context = session.context
   structured_reply = ButtonTemplate.new
   structured_reply.set_text("Do you want to browse by venue or see the upcoming concerts ?")
-  structured_reply.add_postback("By venues", "venues: #{context['city']}")
-  structured_reply.add_postback("Upcoming concerts", "upcoming: #{context['city']}")
+  structured_reply.add_postback("By venues", "venues :#{context['city']}")
+  structured_reply.add_postback("Upcoming concerts", "upcoming :#{context['city']}")
   reply_transfer(session, sender, structured_reply)
 end
