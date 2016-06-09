@@ -26,8 +26,9 @@ def show_venues(session, sender)
   response.each do |venue|
     button = Button.new
     button.add_postback("See concerts", venue['id'])
-    structured_reply.add_element( venue["displayName"], "", "http://images.sk-static.com/images/media/profile_images/venues/8086/col2", "", [button])
+    structured_reply.add_element( venue["displayName"], "", "http://images.sk-static.com/images/media/profile_images/venues/8086/col2", "", [button.get_message])
     venue["displayName"]
   end
-  reply_transfer(session, sender, structured_reply)
+  sender.reply(structured_reply.get_message)
+  #reply_transfer(session, sender, structured_reply)
 end
