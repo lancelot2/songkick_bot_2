@@ -23,12 +23,12 @@ def navigation(session, username, sender, msg = "")
   #   sender.reply({text: t('human-assistance-requested')})
   #   transfer_middle_office(session.id, sender, t('human-assistance-requested'))
   #  help_request(username)
-  # elsif context["intent"] == "exit"
-  #   context = {}
-  #   session.update(context: context)
-  #   sender.reply({text: t('exit-requested', username: username)})
-  #   transfer_middle_office(session.id, sender, t('exit-requested'))
-  #   ImageTemplate.new(url='http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif')
+  elsif context["intent"] == "exit"
+    context = {}
+    session.update(context: context)
+    sender.reply({text: t('exit-requested', username: username)})
+    transfer_middle_office(session.id, sender, t('exit-requested'))
+    ImageTemplate.new(url='http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif')
   # elsif context["intent"] == "restart"
   #   sender.reply({text: t('restart-requested')})
   #   transfer_middle_office(session.id, sender, t('restart-requested'))
@@ -41,7 +41,6 @@ def navigation(session, username, sender, msg = "")
   #   cta_intent_message(session, sender)
 elsif context["intent"] == "geolocated"
     geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{context['lat']},#{context['lng']}&apikey=h76Z5PDgOid28Zly"
-    increase_context(session)
     context["city"] =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
     session.update(context: context)
     venues_or_upcoming(session, sender)
