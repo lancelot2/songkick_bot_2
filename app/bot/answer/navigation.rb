@@ -42,6 +42,7 @@ def navigation(session, username, sender, msg = "")
 elsif context["intent"] == "geolocated"
     geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{context['lat']},#{context['lng']}&apikey=h76Z5PDgOid28Zly"
     context["city"] =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0]["metroArea"]["displayName"]
+    session.update(context: context)
     venues_or_upcoming(session, sender)
   elsif context["intent"] == "venue"
     show_venues(session, sender)
