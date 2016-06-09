@@ -52,7 +52,8 @@ def entities_determination(session, msg, context, parameter)
   end
 
   if parameter == "country" && context["city"].nil?
-    address_formatting(msg, session)
+    p "SEARCH CITY"
+    #address_formatting(msg, session)
   end
   p "UPDATED CONTEXT"
   p context
@@ -61,7 +62,7 @@ end
 def address_formatting(msg, session)
   context = session.context
   p "FORMATTING"
-  p msg
+  p "msg"
   p Geocoder.search(msg)
   search = Geocoder.search(msg)#[0].data["address_components"]
   # country = search[5]["long_name"]
