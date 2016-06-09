@@ -63,7 +63,7 @@ require "geocoder"
 # # ​
 #SEARCH FOR VENUES BY NAME
 venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
-response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"]
+response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..9]
 response.each do |venue|
   ap venue["displayName"]
   ap venue['id']
