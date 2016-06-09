@@ -61,7 +61,7 @@ def uk(sender)
   upcoming_concerts_in_liverpool_button.add_postback("Concerts in Liverpool","Liverpool")
   check_venues_in_liverpool_button = Button.new
   check_venues_in_liverpool_button.add_postback("Venues in Liverpool","Liverpool")
-  structured_reply.add_element("Liverpool", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712873/SongKick/cities/liverpool.png", "", [upcoming_concerts_in_liverpool_button.get_message, check_venues_in_Liverpool_button.get_message])
+  structured_reply.add_element("Liverpool", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712873/SongKick/cities/liverpool.png", "", [upcoming_concerts_in_liverpool_button.get_message, check_venues_in_liverpool_button.get_message])
 
   reply_transfer(session, sender, structured_reply)
 end
