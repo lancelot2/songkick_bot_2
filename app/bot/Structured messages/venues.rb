@@ -16,3 +16,17 @@ def choose_location(session, sender)
   structured_reply.add_postback(locations[0]["city"]["displayName"], locations[2]["city"]["displayName"].downcase)
   reply_transfer(session, sender, structured_reply)
 end
+
+
+def show_venues(session, sender)
+  structured_reply = GenericTemplate.new
+  venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=#{context['city']}&apikey=h76Z5PDgOid28Zly"
+  response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][9]
+  response.each do |venue|
+    button = Button.new
+    button.add_postback("See concerts", venue['id'])
+    structured_reply.add_element( venue["displayName"], "", "http://images.sk-static.com/images/media/profile_images/venues/8086/col2", "", [button])
+    venue["displayName"]
+  end
+  reply_transfer(session, sender, structured_reply)
+end

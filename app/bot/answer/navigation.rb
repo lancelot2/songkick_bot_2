@@ -40,7 +40,7 @@ def navigation(session, username, sender, msg = "")
   #   context = {}
   #   cta_intent_message(session, sender)
   elsif context["intent"] == "venue"
-    sender.reply({text: t('share-location')})
+    show_venues(session, sender)
   elsif context["intent"] == "city" && context["city"].present?
     venues_or_upcoming(session, sender)
     # p "GET VENUES"
