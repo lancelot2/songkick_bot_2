@@ -13,7 +13,7 @@ def update_context(msg, session, sender)
     end
   end
   p "UPDATED CONTEXT"
-  p context
+  p session.context
 end
 
 
