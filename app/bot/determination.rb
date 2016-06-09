@@ -22,7 +22,8 @@ def intent_determination(msg, context, sender, session)
   if previous_context["intent"] == "venue"
     context["intent"] = "get_venues"
   elsif previous_context["intent"] == "country" && context["city"].nil?
-     p "SEARCH CITY"
+    address_formatting(msg, session)
+    entity(session, username, sender, msg, "city")
   end
 
   # if  == "country" && parameter == "city" && context["city"].nil?
@@ -67,18 +68,18 @@ def address_formatting(msg, session)
   p "FORMATTING"
   p "msg"
   p Geocoder.search(msg)
-  search = Geocoder.search(msg)#[0].data["address_components"]
+  search = Geocoder.search(msg)[0].data["address_components"]
   # country = search[5]["long_name"]
   # area = search[4]["long_name"]
-  #city = search[3]["long_name"]
+  city = search[3]["long_name"]
   # zipcode = search[6]["long_name"]
   # address = search[0]["long_name"] + " " + search[1]["long_name"]
 
   # context["country"] = country
-  #context["city"] = city
+  context["city"] = city
   # context["zipcode"] = zipcode
   # context["address"] = address
   # context["area"] = area
-
+  context["intent"] == "city"
   session.update(context: context)
 end
