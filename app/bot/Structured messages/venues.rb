@@ -32,3 +32,4 @@ def show_venues(session, sender)
   sender.reply(structured_reply.get_message)
   #reply_transfer(session, sender, structured_reply)
 end
+

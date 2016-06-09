@@ -24,6 +24,9 @@ def intent_determination(msg, context, sender, session)
     address_formatting(msg, session)
     username = sender.get_profile[:body]["first_name"]
     entity(session, username, sender, msg, "city")
+  elsif previous_context["intent"] == "venue" && previous_context["city"].present?
+    context["venue_id"] = msg
+    context["intent"] = "show_concerts"
   end
   context
 end

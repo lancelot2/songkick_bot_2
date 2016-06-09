@@ -35,14 +35,12 @@ require "geocoder"
 #  #  p 'ENTITIES DETERMINATION'
 
 # # ​
-# # #SEARCH FOR EVENTS BY VENUES
-# # concert_url = "http://api.songkick.com/api/3.0/venues/6239/calendar.json?apikey=h76Z5PDgOid28Zly"
-# # response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
-# # response.each do |c|
-# #   # p c["displayName"]
-# #   # p c["start"]["datetime"]
-# #   # p c["venue"]["displayName"]
-# # end
+#SEARCH FOR EVENTS BY VENUES
+concert_url = "http://api.songkick.com/api/3.0/venues/6239/calendar.json?apikey=h76Z5PDgOid28Zly"
+response =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+response.each do |c|
+
+end
 # # ​
 # # ​
 # # ​
@@ -62,12 +60,12 @@ require "geocoder"
 # # ​
 # # ​
 #SEARCH FOR VENUES BY NAME
-venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
-response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..9]
-response.each do |venue|
-  ap venue["displayName"]
-  ap venue['id']
-end
+# venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
+# response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..9]
+# response.each do |venue|
+#   ap venue["displayName"]
+#   ap venue['id']
+# end
 # # ​
 # # ​
 # # ​
@@ -199,5 +197,5 @@ end
 # ap locations =  Oj.load(RestClient.get geo_loc, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"][0..40]
 # lc = locations.uniq{|loc| loc["city"]["displayName"]}
 # lc.count
-p Geocoder.search("Issy les moulinneaux")[0].data["address_components"][0]["long_name"]
+#p Geocoder.search("Issy les moulinneaux")[0].data["address_components"][0]["long_name"]
 #[#<Geocoder::Result::Google:0x007f00ae4a8ae8 @data={"address_components"=>[{"long_name"=>"Marseille", "short_name"=>"Marseille", "types"=>["locality", "political"]}, {"long_name"=>"Bouches-du-Rhone", "short_name"=>"Bouches-du-Rhone", "types"=>["administrative_area_level_2", "political"]}, {"long_name"=>"Provence-Alpes-Côte d'Azur", "short_name"=>"Provence-Alpes-Côte d'Azur", "types"=>["administrative_area_level_1", "political"]}, {"long_name"=>"France", "short_name"=>"FR", "types"=>["country", "political"]}], "formatted_address"=>"Marseille, France", "geometry"=>{"bounds"=>{"northeast"=>{"lat"=>43.3911601, "lng"=>5.5323519}, "southwest"=>{"lat"=>43.169621, "lng"=>5.228641}}, "location"=>{"lat"=>43.296482, "lng"=>5.36978}, "location_type"=>"APPROXIMATE", "viewport"=>{"northeast"=>{"lat"=>43.3911601, "lng"=>5.5323519}, "southwest"=>{"lat"=>43.169621, "lng"=>5.277926100000001}}}, "place_id"=>"ChIJM1PaREO_yRIRIAKX_aUZCAQ", "types"=>["locality", "political"]}, @cache_hit=nil>]
