@@ -5,6 +5,7 @@ def intent_determination(msg, context, sender, session)
               ["bye"],
               ["exit"],
               ["back"],
+              ["upcoming"],
               ["mainbrowsing"],
               ["no", "nope", "fuck", "off", "bye", "fuckoff"],
               ["yes", "yeah", "yep"],
