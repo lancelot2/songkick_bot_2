@@ -19,8 +19,9 @@ def intent_determination(msg, context, sender, session)
       context["intent"] = array.first
     end
   end
-
-  if previous_context["intent"] == "country" && context["city"].nil?
+  if previous_context["intent"] == "country" && context["city"].nil? && context["lat"].present
+    context["intent"] = "geolocated"
+  elsif previous_context["intent"] == "country" && context["city"].nil?
     address_formatting(msg, session)
     username = sender.get_profile[:body]["first_name"]
     entity(session, username, sender, msg, "city")

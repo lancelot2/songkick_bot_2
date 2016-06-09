@@ -39,6 +39,8 @@ def navigation(session, username, sender, msg = "")
   # elsif context["intent"] == "mainbrowsing"
   #   context = {}
   #   cta_intent_message(session, sender)
+elsif context["intent"] == "geolocated"
+    show_venues(session, sender, context["lat"], context["lng"])
   elsif context["intent"] == "venue"
     show_venues(session, sender)
   elsif context["intent"] == "upcoming"

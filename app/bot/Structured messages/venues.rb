@@ -18,10 +18,14 @@ def choose_location(session, sender)
 end
 
 
-def show_venues(session, sender)
+def show_venues(session, sender, lat = "0", lng = "0" )
   context = session.context
   structured_reply = GenericTemplate.new
-  venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=#{context['city']}&apikey=h76Z5PDgOid28Zly"
+  if lat == "0"
+    venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=#{context['city']}&apikey=h76Z5PDgOid28Zly"
+  else
+    venue_url = "http://api.songkick.com/api/3.0/search/venues.json?location=geo:#{context['lat']},#{context['lng']}&apikey={h76Z5PDgOid28Zly}"
+  end
   response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..9]
   response.each do |venue|
     button = Button.new
