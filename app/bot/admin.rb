@@ -12,6 +12,8 @@ def update_context(msg, session, sender)
       session.save
     end
   end
+  p "UPDATED CONTEXT"
+  p context
 end
 
 
