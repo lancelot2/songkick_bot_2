@@ -11,7 +11,7 @@ def add_concert_card(concert, structured_reply)
       agent.user_agent_alias = 'Mac Safari'
     }
     a.get(concert["performance"].first["artist"]["uri"]) do |page|
-      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+      image_url = "http:" + page.search(".profile-picture-wrap img").first.attributes["src"].value
       artist_card_button = Button.new
       artist_card_button.add_postback("Check artist", "iD: artist_card")
       venue_card_button = Button.new

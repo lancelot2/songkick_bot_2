@@ -29,10 +29,22 @@ require "geocoder"
 
   #  context = {}
   #  context["intent"] = "popular_artists"
-  a = Mechanize.new { |agent|
+   a = Mechanize.new { |agent|
     agent.user_agent_alias = 'Mac Safari'
   }
 
+   area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=london&apikey=h76Z5PDgOid28Zly"
+  area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
+  concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
+  concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+  concerts[0..1].each do |concert|
+     a.get(concert["performance"].first["artist"]["uri"]) do |page|
+      p image_url = "http:" + page.search(".profile-picture-wrap img").first.attributes["src"].value
+
+      #[10].attributes["src"].value
+
+    end
+  end
   # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
   #  # p page
   #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
