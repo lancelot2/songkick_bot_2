@@ -1,7 +1,7 @@
 # method for laying out the main browsing path
 def cta_intent_message(session, sender)
   structured_reply = ButtonTemplate.new
-  structured_reply.set_text("Or I can help you browse by...")
+  structured_reply.set_text("I can help you browse by ...")
   structured_reply.add_postback("Cities", "city")
   structured_reply.add_postback("Artists", "artist")
   reply_transfer(session, sender, structured_reply)
