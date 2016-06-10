@@ -61,8 +61,8 @@ def send_artists_reviews_details(session, sender)
     agent.user_agent_alias = 'Mac Safari'
   }
   if context["intent"] == "reviews"
+    reviews = []
     a.get(context["artist_url"]) do |page|
-      reviews = []
       page.search(".artist-reviews ul li")[0..5].each do |review|
         reviews << review.search(".review-content p").first.text
       end

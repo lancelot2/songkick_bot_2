@@ -6,6 +6,7 @@ def intent_determination(msg, context, sender, session)
               ["exit"],
               ["back"],
               ["upcoming"],
+              ["details"],
               ["reviews"],
               ["mainbrowsing"],
               ["popular_artists"],
