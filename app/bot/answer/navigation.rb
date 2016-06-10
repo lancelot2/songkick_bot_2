@@ -40,6 +40,8 @@ def navigation(session, username, sender, msg = "")
   # elsif context["intent"] == "mainbrowsing"
   #   context = {}
   #   cta_intent_message(session, sender)
+  elsif context["intent"] == "city" && context["country"].present? && context["city"].present?
+    city(session, sender, msg)
   elsif context["intent"] == "reviews"
     send_artists_reviews_details(session, sender)
   elsif context["intent"] == "details"
