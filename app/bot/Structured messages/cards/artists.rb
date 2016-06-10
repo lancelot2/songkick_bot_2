@@ -27,16 +27,17 @@ def send_artists(session, sender)
     agent.user_agent_alias = 'Mac Safari'
   }
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
-    p name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
-    p image = "http:" + page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
-    artist_biography_button = Button.new
-    artist_biography_button.add_postback("Check details","details")
-    artist_upcoming_concerts_button = Button.new
-    artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming")
-    live_reviews_button = Button.new
-    live_reviews_button.add_postback("Live reviews","reviews")
-    structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
-
+    page.search(".leaderboard tr")[1..9].each do |artist|
+      p name = page.search(".leaderboard tr")[1..9].search(".name a").first.text
+      p image = "http:" + artist.search(".profile-image img").first.attr("src")
+      artist_biography_button = Button.new
+      artist_biography_button.add_postback("Check details","details")
+      artist_upcoming_concerts_button = Button.new
+      artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming")
+      live_reviews_button = Button.new
+      live_reviews_button.add_postback("Live reviews","reviews")
+      structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
+    end
     # artist_biography_button = Button.new
     # artist_biography_button.add_postback("Check details", "iD: artist_biography")
     # live_reviews_button = Button.new
