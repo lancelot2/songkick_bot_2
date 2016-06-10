@@ -29,11 +29,13 @@ def send_artists(session, sender)
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
     p name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
     p image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
-    upcoming_concerts_in_pittsburg_button = Button.new
-    upcoming_concerts_in_pittsburg_button.add_postback("Check details","details")
-    check_venues_in_pittsburg_button = Button.new
-    check_venues_in_pittsburg_button.add_postback("Live reviews","reviews")
-    structured_reply.add_element(name, "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712890/SongKick/cities/pittsburg.png", "", [upcoming_concerts_in_pittsburg_button.get_message, check_venues_in_pittsburg_button.get_message] )
+    artist_biography_button = Button.new
+    artist_biography_button.add_postback("Check details","details")
+    artist_upcoming_concerts_button = Button.new
+    artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming")
+    live_reviews_button = Button.new
+    live_reviews_button.add_postback("Live reviews","reviews")
+    structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
 
     # artist_biography_button = Button.new
     # artist_biography_button.add_postback("Check details", "iD: artist_biography")
