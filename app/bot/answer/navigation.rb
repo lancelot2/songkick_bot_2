@@ -41,7 +41,9 @@ def navigation(session, username, sender, msg = "")
   #   context = {}
   #   cta_intent_message(session, sender)
   elsif context["intent"] == "reviews"
-    send_artists_reviews(session, sender)
+    send_artists_reviews_details(session, sender)
+  elsif context["intent"] == "details"
+    send_artists_reviews_details(session, sender)
   elsif context["intent"] == "popular_artists" || context["intent"] == "trending_artists"
     send_artists(session, sender)
   elsif context["intent"] == "geolocated"
