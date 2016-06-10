@@ -28,7 +28,7 @@ def send_artists(session, sender)
   }
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
     page.search(".leaderboard tr")[1..9].each do |artist|
-      p name = page.search(".leaderboard tr")[1..9].search(".name a").first.text
+      p name = artist.search(".name a").first.text
       p image = "http:" + artist.search(".profile-image img").first.attr("src")
       artist_biography_button = Button.new
       artist_biography_button.add_postback("Check details","details")
