@@ -6,6 +6,7 @@ def intent_determination(msg, context, sender, session)
               ["exit"],
               ["back"],
               ["upcoming"],
+              ["reviews"],
               ["mainbrowsing"],
               ["popular_artists"],
               ["trending_artists"],
@@ -32,6 +33,12 @@ def intent_determination(msg, context, sender, session)
     context["intent"] = "show_concerts"
   elsif previous_context["intent"].nil? && context["intent"].nil?
     context["intent"] = "start"
+  elsif previous_context["intent"] == "artists" && context["intent"] == "upcoming"
+    context["artist_id"] = msg.gsub("upcoming :")
+  elsif previous_context["intent"] == "artists" && context["intent"] == "reviews"
+    context["artist_id"] = msg.gsub("details :")
+  elsif previous_context["intent"] == "artists" && context["intent"] == "details"
+    context["artist_id"] = msg.gsub("details :")
   end
   context
 end

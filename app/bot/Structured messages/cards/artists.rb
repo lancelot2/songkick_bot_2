@@ -50,3 +50,7 @@ def send_artists(session, sender)
   p structured_reply.get_message
   sender.reply(structured_reply.get_message)
 end
+
+
+def send_artists_concerts(session, sender)
+end

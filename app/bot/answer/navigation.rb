@@ -49,6 +49,10 @@ def navigation(session, username, sender, msg = "")
     venues_or_upcoming(session, sender)
   elsif context["intent"] == "venue"
     show_venues(session, sender)
+  elsif context["intent"] == "upcoming" && context["artist_id"].present?
+    artist_url = "http://api.songkick.com/api/3.0/artists/#{context['artist_id']}/calendar.json?apikey=h76Z5PDgOid28Zly"
+    concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+    generic_template_message(session, concerts, sender, context, msg)
   elsif context["intent"] == "upcoming"
     city(session, sender, msg)
   elsif context["intent"] == "city" && context["city"].present?
