@@ -31,6 +31,9 @@ def send_artists(session, sender)
       p name = artist.search(".name a").first.text
       p id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
       p image = "http:" + artist.search(".profile-image img").first.attr("src")
+      url = "http://www.songkick.com/" + page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href")
+      context["artist_url"] = url
+      session.update(context: context)
       artist_biography_button = Button.new
       artist_biography_button.add_postback("Check details","details :#{id}")
       artist_upcoming_concerts_button = Button.new
@@ -52,5 +55,29 @@ def send_artists(session, sender)
 end
 
 
-def send_artists_concerts(session, sender)
+def send_artists_reviews_details(session, sender)
+  context = session.context
+  if context["intent"] == "reviews"
+    a.get(context["artist_url"]) do |page|
+    reviews = []
+    page.search(".artist-reviews ul li")[0..5].each do |review|
+      reviews << review.search(".review-content p").first.text
+    end
+    if reviews.empty?
+      sender.reply({text: "Sorry there aren't any reviews yet :( "})
+    else
+      reviews.each do |review|
+        sender.reply({text: review})
+      end
+    end
+  elsif context["intent"] == "details"
+    a.get(context["artist_url"]) do |page|
+      bio = page.search("#biography .standfirst p").text
+      if bio.empty?
+        sender.reply({text: "Sorry this artists biography hasn't been added yet :("})
+      else
+        sender.reply({text: bio})
+      end
+    end
+  end
 end

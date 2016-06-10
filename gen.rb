@@ -14,12 +14,24 @@ require "geocoder"
     agent.user_agent_alias = 'Mac Safari'
   }
 
-  a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
-   # p page
-    p name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
-    p id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
-    # image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+  # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
+  #  # p page
+  #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
+  #   id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+  #   p url = "http://www.songkick.com/" + page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href")
+  #   # image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+  # end
+
+  a.get("http://www.songkick.com/artists/197928-coldplay") do |page|
+    bio = page.search("#biography .standfirst p").text
+    p bio.empty?
+    reviews = []
+    page.search(".artist-reviews ul li")[0..5].each do |review|
+      reviews << review.search(".review-content p").first.text
+    end
+    p reviews.empty?
   end
+
 
 # # button = ReceiptTemplate.new("Matthias", "122346", "USD", "paypal", Time.now.to_i)
 # # button.add_element('Tshirt','top', "1", "10", "USD", 'https://s-media-cache-ak0.pinimg.com/736x/04/03/27/040327e01ef3f42a1eae9c4b2d1c299f.jpg')
