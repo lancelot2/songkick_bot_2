@@ -81,7 +81,7 @@ end
 def address_formatting(msg, session)
   context = session.context
   city = Geocoder.search(msg)[0].data["address_components"][0]["long_name"]
-  p city
+  p "ADDRESS FORMATING"
   context["city"] = city
   context["intent"] = "city"
   p context

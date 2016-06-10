@@ -7,6 +7,25 @@ require 'oj'
 require 'mechanize'
 require "geocoder"
 
+  # context = {}
+  # msg = "uk"
+  # parameter = "country"
+  # country = [["usa", "us", "states", "america", "united states"], ["uk", "great britain", "united kingdom", "england", "scotland"], ["europe", "france", "germany", "holland", "danemark", "sweden", "spain", "ireland", "italy", "hungary"]]
+  # usa_cities = [["sf", "san francisco"], ["los angeles", "la"], ["new york", "new-york", "ny", "nyc"], ["portland"], ["washington"], ["philadelphia"], ["seattle"], ["chicago"], ["orlando"], ["pittsburg"]]
+  # uk_cities = [["london", "ldn"], ["manchester"], ["glasgow"], ["edinburgh"], ["birmingham"], ["newcastle"], ["bristol"], ["belfast"], ["brighton"], ["liverpool"]]
+  # european_cities = [["paris", "pari"], ["berlin"], ["amsterdam"], ["barcelona"], ["copenhagen"], ["stockholm"], ["dublin"], ["prague"], ["rome"], ["budapest"]]
+  # city = usa_cities + uk_cities + european_cities
+  # keywords = eval(parameter)
+
+  # tokenized_array = msg.downcase.split
+  # keywords.each do |array|
+  #   if (tokenized_array & array).any?
+  #     p array
+  #     context[parameter] = array.first
+  #     context["intent"] = parameter
+  #   end
+  # end
+  # p context
 
   #  context = {}
   #  context["intent"] = "popular_artists"
@@ -22,15 +41,15 @@ require "geocoder"
   #   # image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
   # end
 
-  a.get("http://www.songkick.com/artists/197928-coldplay") do |page|
-    bio = page.search("#biography .standfirst p").text
-    p bio.empty?
-    reviews = []
-    page.search(".artist-reviews ul li")[0..5].each do |review|
-      reviews << review.search(".review-content p").first.text
-    end
-    p reviews.empty?
-  end
+  # a.get("http://www.songkick.com/artists/197928-coldplay") do |page|
+  #   bio = page.search("#biography .standfirst p").text
+  #   p bio.empty?
+  #   reviews = []
+  #   page.search(".artist-reviews ul li")[0..5].each do |review|
+  #     reviews << review.search(".review-content p").first.text
+  #   end
+  #   p reviews.empty?
+  # end
 
 
 # # button = ReceiptTemplate.new("Matthias", "122346", "USD", "paypal", Time.now.to_i)
