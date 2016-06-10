@@ -21,20 +21,27 @@ end
 def send_artists(session, sender)
   context = session.context
   structured_reply = GenericTemplate.new
-  a = Mechanize.new { |agent|
-    agent.user_agent_alias = 'Mac Safari'
-  }
-  a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
-    p name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
-    p image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
-    artist_biography_button = Button.new
-    artist_biography_button.add_postback("Check details", "iD: artist_biography")
-    live_reviews_button = Button.new
-    live_reviews_button.add_postback("Live Reviews", "iD: live_reviews")
-    artist_upcoming_concerts_button = Button.new
-    artist_upcoming_concerts_button.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
-    structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
-  end
+    upcoming_concerts_in_pittsburg_button = Button.new
+  upcoming_concerts_in_pittsburg_button.add_postback("Concerts in Pittsburg","Pittsburg")
+  check_venues_in_pittsburg_button = Button.new
+  check_venues_in_pittsburg_button.add_postback("Venues in Pittsburg","Pittsburg")
+  structured_reply.add_element("Pittsburg", "", "http://res.cloudinary.com/dpy7x8rgs/image/upload/v1464712890/SongKick/cities/pittsburg.png", "", [upcoming_concerts_in_pittsburg_button.get_message, check_venues_in_pittsburg_button.get_message] )
+
+  #reply_transfer(session, sender, structured_reply)
+  # a = Mechanize.new { |agent|
+  #   agent.user_agent_alias = 'Mac Safari'
+  # }
+  # a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
+  #   p name = page.search(".leaderboard tr")[1..9][0].search(".name a").first.text
+  #   p image = page.search(".leaderboard tr")[1..9][0].search(".profile-image img").first.attr("src")
+  #   artist_biography_button = Button.new
+  #   artist_biography_button.add_postback("Check details", "iD: artist_biography")
+  #   live_reviews_button = Button.new
+  #   live_reviews_button.add_postback("Live Reviews", "iD: live_reviews")
+  #   artist_upcoming_concerts_button = Button.new
+  #   artist_upcoming_concerts_button.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
+  #   structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
+  # end
   p structured_reply.get_message
   sender.reply(structured_reply.get_message)
 end
