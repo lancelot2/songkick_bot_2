@@ -34,6 +34,7 @@ def intent_determination(msg, context, sender, session)
   elsif previous_context["intent"].nil? && context["intent"].nil?
     context["intent"] = "start"
   elsif previous_context["intent"] == "artists" && context["intent"] == "upcoming"
+    p "TRUE"
     context["artist_id"] = msg.gsub("upcoming :")
   elsif previous_context["intent"] == "artists" && context["intent"] == "reviews"
     context["artist_id"] = msg.gsub("details :")
