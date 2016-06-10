@@ -59,9 +59,10 @@ def send_artists_reviews_details(session, sender)
   context = session.context
   if context["intent"] == "reviews"
     a.get(context["artist_url"]) do |page|
-    reviews = []
-    page.search(".artist-reviews ul li")[0..5].each do |review|
-      reviews << review.search(".review-content p").first.text
+      reviews = []
+      page.search(".artist-reviews ul li")[0..5].each do |review|
+        reviews << review.search(".review-content p").first.text
+      end
     end
     if reviews.empty?
       sender.reply({text: "Sorry there aren't any reviews yet :( "})
