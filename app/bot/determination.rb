@@ -30,6 +30,8 @@ def intent_determination(msg, context, sender, session)
   elsif previous_context["intent"] == "venue" && previous_context["city"].present?
     context["venue_id"] = msg
     context["intent"] = "show_concerts"
+  elsif previous_context["intent"].nil? && context["intent"].nil?
+    context["intent"] = "start"
   end
   context
 end
