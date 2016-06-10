@@ -57,6 +57,9 @@ end
 
 def send_artists_reviews_details(session, sender)
   context = session.context
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
   if context["intent"] == "reviews"
     a.get(context["artist_url"]) do |page|
       reviews = []
