@@ -10,14 +10,16 @@ require "geocoder"
 
   #  context = {}
   #  context["intent"] = "popular_artists"
-  # a = Mechanize.new { |agent|
-  #   agent.user_agent_alias = 'Mac Safari'
-  # }
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
 
-  # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
-  #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
-  #   image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
-  # end
+  a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
+   # p page
+    p name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
+    p id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+    # image = page.search(".leaderboard tr")[1..10][0].search(".profile-image img").first.attr("src")
+  end
 
 # # button = ReceiptTemplate.new("Matthias", "122346", "USD", "paypal", Time.now.to_i)
 # # button.add_element('Tshirt','top', "1", "10", "USD", 'https://s-media-cache-ak0.pinimg.com/736x/04/03/27/040327e01ef3f42a1eae9c4b2d1c299f.jpg')
@@ -25,45 +27,16 @@ require "geocoder"
 # # button.set_summary(10, 10, 10, 100)
 
 # # p button.get_message
-  button = {:attachment=>
-    {:type=>"template",
-     :payload=>
-             {:template_type=>"generic",
-              :elements=>[
-                           {"title"=>"Desiigner",
-                            "item_url"=>"",
-                            "image_url"=>"//images.sk-static.com/images/media/profile_images/artists/8761459/large_avatar",
-                            "subtitle"=>"",
-                            "buttons"=>
-                                    [{
-                                      "type"=>"postback",
-                                      "title"=>"Check details",
-                                      "payload"=>"iD: artist_biography"
-                                      },
-                                      {
-                                        "type"=>"postback",
-                                        "title"=>"Live Reviews",
-                                        "payload"=>"iD: live_reviews"
-                                      },
-                                      {"type"=>"postback",
-                                          "title"=>"Upcoming concerts",
-                                          "payload"=>"iD:
-                                          artist_upcoming_concerts"}
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  }
-                                }
-  token = "CAAKs4sjMLtgBACbNSA3adhDT76dxu4A2iqNsZBcsfPgCMeVBZCbB7yGI5SiPU6PbfpFyi2W7zEclj8YXYxCG9VLcWZCBVT4XsBBEFJt6tAH8XYu1Y0W6BJsT2L6YNSvHnYV6pAgIaZB7HWrzchURHT0eSdyFB8OKR0wkkhjg0yatEx3XBIZAedcSRZAFXuSHIZD"
-  url = "https://graph.facebook.com/v2.6/me/messages?"
-  request_params =  {
-    recipient: {id: 1006889982732663},
-    "message": button,
+  # button =
+  # token = "CAAKs4sjMLtgBACbNSA3adhDT76dxu4A2iqNsZBcsfPgCMeVBZCbB7yGI5SiPU6PbfpFyi2W7zEclj8YXYxCG9VLcWZCBVT4XsBBEFJt6tAH8XYu1Y0W6BJsT2L6YNSvHnYV6pAgIaZB7HWrzchURHT0eSdyFB8OKR0wkkhjg0yatEx3XBIZAedcSRZAFXuSHIZD"
+  # url = "https://graph.facebook.com/v2.6/me/messages?"
+  # request_params =  {
+  #   recipient: {id: 1006889982732663},
+  #   "message": button,
 
-    access_token: token
-  }
-  RestClient.post url, request_params.to_json, :content_type => :json, :accept => :json
+  #   access_token: token
+  # }
+  # RestClient.post url, request_params.to_json, :content_type => :json, :accept => :json
 #  # msg = 'USA'
 #  # context = {}
 #  # countries = [["US", "USA", "States", "America", "United States"], ["UK", "Great Britain", "United Kingdom", "England", "Scotland"], ["Europe", "France", "Germany", "Holland", "Danemark", "Sweden", "Spain", "Ireland", "Italy", "Hungary"]]

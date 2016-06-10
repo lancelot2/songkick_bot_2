@@ -29,13 +29,14 @@ def send_artists(session, sender)
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
     page.search(".leaderboard tr")[1..9].each do |artist|
       p name = artist.search(".name a").first.text
+      p id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
       p image = "http:" + artist.search(".profile-image img").first.attr("src")
       artist_biography_button = Button.new
-      artist_biography_button.add_postback("Check details","details")
+      artist_biography_button.add_postback("Check details","details :#{id}")
       artist_upcoming_concerts_button = Button.new
-      artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming")
+      artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
       live_reviews_button = Button.new
-      live_reviews_button.add_postback("Live reviews","reviews")
+      live_reviews_button.add_postback("Live reviews","reviews :#{id}")
       structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
     end
     # artist_biography_button = Button.new
