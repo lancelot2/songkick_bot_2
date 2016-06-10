@@ -59,7 +59,8 @@ def navigation(session, username, sender, msg = "")
     artist_url = "http://api.songkick.com/api/3.0/artists/#{context['artist_id']}/calendar.json?apikey=h76Z5PDgOid28Zly"
     concerts =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
     increase_context(session)
-    p "HERE"
+    context["concerts_showed"] = 0
+    session.update(context: context)
     generic_template_message(session, concerts, sender, context, msg)
   elsif context["intent"] == "upcoming"
     city(session, sender, msg)

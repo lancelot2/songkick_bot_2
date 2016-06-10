@@ -6,5 +6,6 @@ def increase_context(session)
    context["concerts_showed"] += 1
   end
   session.update(context: context)
+  p context
   session
 end
