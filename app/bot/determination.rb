@@ -22,6 +22,10 @@ def intent_determination(msg, context, sender, session)
       context["intent"] = array.first
     end
   end
+  p "PREVIOUS"
+  p previous_context
+  p "CONTEXT"
+  p context
   if previous_context["intent"] == "country" && context["city"].nil? && context["lat"].present?
     context["intent"] = "geolocated"
   elsif previous_context["intent"] == "country" && context["city"].nil?
