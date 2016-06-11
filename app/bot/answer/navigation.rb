@@ -73,7 +73,8 @@ def navigation(session, username, sender, msg = "")
     concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
     generic_template_message(session, concerts, sender, context, msg)
   elsif context["intent"] == "city" && context["city"].present?
-    city(session, sender, msg)
+    venues_or_upcoming(session, sender)
+    #city(session, sender, msg)
     # p context
     # choose_location(session, sender)
   end
