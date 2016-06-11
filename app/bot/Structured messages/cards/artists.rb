@@ -114,7 +114,8 @@ def single_card(session, sender)
       venue_name = page.search("h1").first.children.first.text
       upcoming_concerts_button = Button.new
       upcoming_concerts_button.add_postback("See concerts","upcoming :#{id}")
-      structured_reply.add_element(artist_name, "", image_url, "", [upcoming_concerts_button.get_message])
+      structured_reply.add_element(venue_name, "", image_url, "", [upcoming_concerts_button.get_message])
     end
+    sender.reply(structured_reply.get_message)
   end
 end
