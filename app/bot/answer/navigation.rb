@@ -48,7 +48,7 @@ def navigation(session, username, sender, msg = "")
     send_artists_reviews_details(session, sender)
   elsif context["intent"] == "details"
     send_artists_reviews_details(session, sender)
-  elsif context["intent"] == "popular_artists" || context["intent"] == "trending_artists"
+  elsif context["intent"] == "popular_artists" && context["artist_url"].nil? || context["intent"] == "trending_artists" && context["artist_url"].nil?
     send_artists(session, sender)
   elsif context["intent"] == "geolocated"
     geo_loc = "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{context['lat']},#{context['lng']}&apikey=h76Z5PDgOid28Zly"
