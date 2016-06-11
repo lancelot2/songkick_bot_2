@@ -29,7 +29,7 @@ def send_artists(session, sender)
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
     page.search(".leaderboard tr")[1..9].each do |artist|
       p name = artist.search(".name a").first.text
-      p id = page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+      p id = page.search(".leaderboard tr")[1..10].search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
       p image = "http:" + artist.search(".profile-image img").first.attr("src")
       url = "http://www.songkick.com/" + page.search(".leaderboard tr")[1..10][0].search(".name a").first.attr("href")
       context["artist_url"] = url
