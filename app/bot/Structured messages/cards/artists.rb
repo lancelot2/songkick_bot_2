@@ -92,7 +92,7 @@ def single_card(session, sender)
   a = Mechanize.new { |agent|
     agent.user_agent_alias = 'Mac Safari'
   }
-  if context["artist_id"].present?
+  if context["artist_url"].present?
     a.get(context["artist_url"]) do |page|
       artist_name = page.search("h1").text
       image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
@@ -104,7 +104,7 @@ def single_card(session, sender)
       structured_reply.add_element(artist_name, "", image_url, "", [artist_biography_button.get_message, live_reviews_button.get_message] )
     end
     sender.reply(structured_reply.get_message)
-  elsif context["venue_id"].present?
+  elsif context["venue_url"].present?
     a.get(context["venue_url"]) do |page|
       image_url = "http:" + page.search(".profile-picture").attr("src").value
 
