@@ -2,6 +2,7 @@ def add_concert_card(concert, structured_reply)
     artist_page_url = concert["performance"].first["artist"]["uri"]
     concert_name = concert["displayName"]
     artist_url = concert["performance"].first["artist"]["uri"]
+    artist_id = concert["performance"].first["artist"]["id"]
     venue_url = concert["venue"]["uri"]
     if concert["start"]["datetime"].nil?
       concert_date = "Soon"
