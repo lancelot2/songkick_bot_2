@@ -47,15 +47,18 @@ require "geocoder"
   #
   # venur_url = "http://api.songkick.com/api/3.0/artists/8761459/calendar.json?apikey=h76Z5PDgOid28Zly"
   #   concerts =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
-  # #venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
-  # response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
-  # response.each do |venue|
-  #   url = venue["uri"]
-  #    a.get(url) do |page|
-  #    url = "http:" + page.search(".profile-picture").attr("src").value
+  venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
+  response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
+  response.each do |venue|
+    url = venue["uri"]
+    p url
+     a.get(url) do |page|
+     p page.search("h1").first.children.first.text
+     p "############"
+     #p url = "http:" + page.search(".profile-picture").attr("src").value
 
-  #   end
-  # end
+    end
+  end
   # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
   #  # p page
   #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
@@ -152,25 +155,25 @@ require "geocoder"
 # concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..15]
 
 
-concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
-concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..2]
-#p concerts
-concerts.each do |c|
-  p c["performance"].first["artist"]["uri"]
-  #p c["performance"].first["artist"]["id"]
-  # p c["displayName"]
-  # p c["venue"]["uri"]
-  # p c["start"]["datetime"]
-  # p DateTime.parse(c["start"]["datetime"]).class
-  # p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
-  # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
-  # a = Mechanize.new { |agent|
-  #   agent.user_agent_alias = 'Mac Safari'
-  # }
-  # a.get(c["performance"].first["artist"]["uri"]) do |page|
-  #   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-  # end
-end
+# concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+# concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..2]
+# #p concerts
+# concerts.each do |c|
+#   p c["performance"].first["artist"]["uri"]
+#   #p c["performance"].first["artist"]["id"]
+#   # p c["displayName"]
+#   # p c["venue"]["uri"]
+#   # p c["start"]["datetime"]
+#   # p DateTime.parse(c["start"]["datetime"]).class
+#   # p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
+#   # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
+#   # a = Mechanize.new { |agent|
+#   #   agent.user_agent_alias = 'Mac Safari'
+#   # }
+#   # a.get(c["performance"].first["artist"]["uri"]) do |page|
+#   #   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+#   # end
+# end
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
 

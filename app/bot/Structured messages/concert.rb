@@ -166,11 +166,11 @@ end
 def more_pictures_message(concert, sender)
   structured_reply = GenericTemplate.new
   concert["concert"]["images"].each do |image|
-      more_info_button = Button.new
-      more_info_button.add_postback("More info","#{concert["concert"]["id"]}: info")
-      check_stock_button = Button.new
-      check_stock_button.add_postback("Check stock","#{concert["concert"]["id"]}: stock")
-      structured_reply.add_element("Detailed images", "", image["src"], "", [more_info_button.get_message, check_stock_button.get_message ] )
+    more_info_button = Button.new
+    more_info_button.add_postback("More info","#{concert["concert"]["id"]}: info")
+    check_stock_button = Button.new
+    check_stock_button.add_postback("Check stock","#{concert["concert"]["id"]}: stock")
+    structured_reply.add_element("Detailed images", "", image["src"], "", [more_info_button.get_message, check_stock_button.get_message ] )
   end
   reply_transfer(session, sender, structured_reply)
 end

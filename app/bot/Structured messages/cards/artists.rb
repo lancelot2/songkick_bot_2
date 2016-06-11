@@ -108,7 +108,13 @@ def single_card(session, sender)
   elsif context["venue_url"].present?
     a.get(context["venue_url"]) do |page|
       image_url = "http:" + page.search(".profile-picture").attr("src").value
-
+      id = context["venue_url"].gsub("http://www.songkick.com/venues/", "")[/\d+/]
+      context["venue_id"] = id
+      session.update(context: context)
+      venue_name = page.search("h1").first.children.first.text
+      upcoming_concerts_button = Button.new
+      upcoming_concerts_button.add_postback("See concerts","upcoming :#{id}")
+      structured_reply.add_element(artist_name, "", image_url, "", [upcoming_concerts_button.get_message])
     end
   end
 end
