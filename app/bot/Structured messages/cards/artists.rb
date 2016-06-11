@@ -89,6 +89,7 @@ end
 
 def single_card(session, sender)
   context = session.context
+  structured_reply = GenericTemplate.new
   a = Mechanize.new { |agent|
     agent.user_agent_alias = 'Mac Safari'
   }
