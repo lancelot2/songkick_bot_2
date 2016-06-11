@@ -45,16 +45,17 @@ require "geocoder"
 
   #   end
   #
+  # venur_url = "http://api.songkick.com/api/3.0/artists/8761459/calendar.json?apikey=h76Z5PDgOid28Zly"
+  #   concerts =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
+  # #venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
+  # response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
+  # response.each do |venue|
+  #   url = venue["uri"]
+  #    a.get(url) do |page|
+  #    url = "http:" + page.search(".profile-picture").attr("src").value
 
-  venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
-  response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
-  response.each do |venue|
-    url = venue["uri"]
-     a.get(url) do |page|
-     url = "http:" + page.search(".profile-picture").attr("src").value
-
-    end
-  end
+  #   end
+  # end
   # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
   #  # p page
   #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
@@ -151,24 +152,25 @@ require "geocoder"
 # concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..15]
 
 
-# concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
-# concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..5]
-
-# concerts.each do |c|
-#   # p c["performance"].first["artist"]["uri"]
-#   # p c["displayName"]
-#   # p c["venue"]["displayName"]
-#   p c["start"]["datetime"].class
-#   p DateTime.parse(c["start"]["datetime"]).class
-#   p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
-#   # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
-#   a = Mechanize.new { |agent|
-#     agent.user_agent_alias = 'Mac Safari'
-#   }
-#   a.get(c["performance"].first["artist"]["uri"]) do |page|
-#     ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
-#   end
-# end
+concert_url = "http://api.songkick.com/api/3.0/metro_areas/24426/calendar.json?apikey=h76Z5PDgOid28Zly"
+concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"][1..2]
+#p concerts
+concerts.each do |c|
+  p c["performance"].first["artist"]["uri"]
+  #p c["performance"].first["artist"]["id"]
+  # p c["displayName"]
+  # p c["venue"]["uri"]
+  # p c["start"]["datetime"]
+  # p DateTime.parse(c["start"]["datetime"]).class
+  # p DateTime.parse(c["start"]["datetime"]).strftime("%B %d at %l:%M%P")
+  # p c["start"]["datetime"].strptime("%B%d at %l:%M%p")
+  # a = Mechanize.new { |agent|
+  #   agent.user_agent_alias = 'Mac Safari'
+  # }
+  # a.get(c["performance"].first["artist"]["uri"]) do |page|
+  #   ap "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+  # end
+end
 # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"
 # p concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"].count
 
@@ -257,3 +259,13 @@ require "geocoder"
 # lc.count
 #p Geocoder.search("Issy les moulinneaux")[0].data["address_components"][0]["long_name"]
 #[#<Geocoder::Result::Google:0x007f00ae4a8ae8 @data={"address_components"=>[{"long_name"=>"Marseille", "short_name"=>"Marseille", "types"=>["locality", "political"]}, {"long_name"=>"Bouches-du-Rhone", "short_name"=>"Bouches-du-Rhone", "types"=>["administrative_area_level_2", "political"]}, {"long_name"=>"Provence-Alpes-Côte d'Azur", "short_name"=>"Provence-Alpes-Côte d'Azur", "types"=>["administrative_area_level_1", "political"]}, {"long_name"=>"France", "short_name"=>"FR", "types"=>["country", "political"]}], "formatted_address"=>"Marseille, France", "geometry"=>{"bounds"=>{"northeast"=>{"lat"=>43.3911601, "lng"=>5.5323519}, "southwest"=>{"lat"=>43.169621, "lng"=>5.228641}}, "location"=>{"lat"=>43.296482, "lng"=>5.36978}, "location_type"=>"APPROXIMATE", "viewport"=>{"northeast"=>{"lat"=>43.3911601, "lng"=>5.5323519}, "southwest"=>{"lat"=>43.169621, "lng"=>5.277926100000001}}}, "place_id"=>"ChIJM1PaREO_yRIRIAKX_aUZCAQ", "types"=>["locality", "political"]}, @cache_hit=nil>]
+
+
+
+
+
+
+
+
+
+

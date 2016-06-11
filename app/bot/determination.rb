@@ -29,6 +29,12 @@ def intent_determination(msg, context, sender, session)
   p context
   if previous_context["intent"] == "country" && context["city"].nil? && context["lat"].present?
     context["intent"] = "geolocated"
+  elsif previous_context["intent"] == "city" && context["city"].present? && context["intent"] == "artists"
+    context["intent"] = "single_card"
+    context["artist_url"] = msg.gsub(" artists", "")
+  elsif previous_context["intent"] == "city" && context["city"].present? && context["intent"] == "venue"
+    context["intent"] = "single_card"
+    context["venue_url"] = msg.gsub(" venues", "")
   elsif previous_context["intent"] == "country" && context["city"].nil? && context["country"].nil?
     address_formatting(msg, session)
     username = sender.get_profile[:body]["first_name"]

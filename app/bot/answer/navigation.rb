@@ -40,6 +40,8 @@ def navigation(session, username, sender, msg = "")
   # elsif context["intent"] == "mainbrowsing"
   #   context = {}
   #   cta_intent_message(session, sender)
+  elsif context["intent"] == "single_card"
+    single_card(session, sender)
   elsif context["intent"] == "city" && context["country"].present? && context["city"].present?
     city(session, sender, msg)
   elsif context["intent"] == "reviews"
@@ -70,7 +72,8 @@ def navigation(session, username, sender, msg = "")
     concert_url = "http://api.songkick.com/api/3.0/venues/#{context["venue_id"]}/calendar.json?apikey=h76Z5PDgOid28Zly"
     concerts =  Oj.load(RestClient.get concert_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
     generic_template_message(session, concerts, sender, context, msg)
-    # p "GET VENUES"
+  elsif context["intent"] == "city" && context["city"].present?
+    city(session, sender, msg)
     # p context
     # choose_location(session, sender)
   end

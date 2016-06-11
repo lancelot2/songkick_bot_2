@@ -1,6 +1,8 @@
 def add_concert_card(concert, structured_reply)
     artist_page_url = concert["performance"].first["artist"]["uri"]
     concert_name = concert["displayName"]
+    artist_url = concert["performance"].first["artist"]["uri"]
+    venue_url = concert["venue"]["uri"]
     if concert["start"]["datetime"].nil?
       concert_date = "Soon"
     else
@@ -13,11 +15,11 @@ def add_concert_card(concert, structured_reply)
     a.get(concert["performance"].first["artist"]["uri"]) do |page|
       image_url = "http:" + page.search(".profile-picture-wrap img").first.attributes["src"].value
       artist_card_button = Button.new
-      artist_card_button.add_postback("Check artist", "iD: artist_card")
+      artist_card_button.add_postback("Check artist", "#{artist_url} artists")
       venue_card_button = Button.new
-      venue_card_button.add_postback("Check venue", "iD: venue_card")
+      venue_card_button.add_postback("Check venue", "#{venue_url} venues")
       ticket_external_link_button = Button.new
-      ticket_external_link_button.add_postback("Buy tickets", "iD: ticket_external_link")
+      ticket_external_link_button.add_postback("Buy tickets", "#{artist_id}: ticket_external_link")
       structured_reply.add_element(concert_name, "", image_url, concert_date, [artist_card_button.get_message, venue_card_button.get_message, ticket_external_link_button.get_message])
     end
 

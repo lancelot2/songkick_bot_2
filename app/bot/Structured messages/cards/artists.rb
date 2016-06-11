@@ -85,3 +85,29 @@ def send_artists_reviews_details(session, sender)
     end
   end
 end
+
+
+def single_card(session, sender)
+  context = session.context
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
+  if context["artist_id"].present?
+    a.get(context["artist_url"]) do |page|
+      artist_name = page.search("h1").text
+      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+      id = context["artist_url"].gsub("http://www.songkick.com/artists/", "")[/\d+/]
+      artist_biography_button = Button.new
+      artist_biography_button.add_postback("Check details","details :#{id}")
+      live_reviews_button = Button.new
+      live_reviews_button.add_postback("Live reviews","reviews :#{id}")
+      structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message] )
+    end
+    sender.reply(structured_reply.get_message)
+  elsif context["venue_id"].present?
+    a.get(context["venue_url"]) do |page|
+      image_url = "http:" + page.search(".profile-picture").attr("src").value
+
+    end
+  end
+end
