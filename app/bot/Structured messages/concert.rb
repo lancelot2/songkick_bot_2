@@ -1,4 +1,5 @@
-def add_concert_card(concert, structured_reply)
+def add_concert_card(session, concert, structured_reply)
+    context = session.context
     artist_page_url = concert["performance"].first["artist"]["uri"]
     concert_name = concert["displayName"]
     artist_url = concert["performance"].first["artist"]["uri"]
@@ -95,7 +96,7 @@ def less_than_9_concerts(session, concerts, sender, structured_reply)
   context = session.context
   p concerts.count
   concerts[0..9].each do |concert|
-    add_concert_card(concert, structured_reply)
+    add_concert_card(session, concert, structured_reply)
   end
   last_card(session, structured_reply, 8)
   reply_transfer(session, sender, structured_reply)
@@ -106,7 +107,7 @@ end
 def more_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
   context = session.context
   concerts[concerts_showed..(concerts_showed + 8)].each do |concert|
-    add_concert_card(concert, structured_reply)
+    add_concert_card(session, concert, structured_reply)
   end
   p "PB CONTEXT"
   p context
@@ -117,7 +118,7 @@ end
 def less_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
   context = session.context
   concerts[concerts_showed..(concerts_showed + 9)].each do |concert|
-    add_concert_card(concert, structured_reply)
+    add_concert_card(session, concert, structured_reply)
   end
   last_card(session, structured_reply, 8)
 end
