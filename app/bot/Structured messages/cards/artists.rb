@@ -101,7 +101,7 @@ def single_card(session, sender)
       artist_biography_button.add_postback("Check details","details :#{id}")
       live_reviews_button = Button.new
       live_reviews_button.add_postback("Live reviews","reviews :#{id}")
-      structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message] )
+      structured_reply.add_element(artist_name, "", image_url, "", [artist_biography_button.get_message, live_reviews_button.get_message] )
     end
     sender.reply(structured_reply.get_message)
   elsif context["venue_id"].present?
