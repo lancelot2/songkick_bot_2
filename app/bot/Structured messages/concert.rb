@@ -5,6 +5,7 @@ def add_concert_card(session, concert, structured_reply)
     artist_url = concert["performance"].first["artist"]["uri"]
     artist_id = concert["performance"].first["artist"]["id"]
     venue_url = concert["venue"]["uri"]
+    tickets_url = concert["uri"]
     if concert["start"]["datetime"].nil?
       concert_date = "Soon"
     else
@@ -20,7 +21,7 @@ def add_concert_card(session, concert, structured_reply)
       venue_card_button = Button.new
       venue_card_button.add_postback("Check venue", "#{venue_url} venues")
       ticket_external_link_button = Button.new
-      ticket_external_link_button.add_postback("Buy tickets", "#{artist_id}: ticket_external_link")
+      ticket_external_link_button.add_web_url("Buy tickets", tickets_url)
       if context["intent"] == "upcoming" && context["artist_id"].present?
          structured_reply.add_element(concert_name, "", image_url, concert_date, [venue_card_button.get_message, ticket_external_link_button.get_message])
       else
