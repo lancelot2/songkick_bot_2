@@ -57,17 +57,41 @@ def intent_determination(msg, context, sender, session)
     context["artist_id"] = msg.gsub("upcoming :", "")
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "reviews"
     context["artist_id"] = msg.gsub("reviews :", "")
+    context["artist_id"] = msg[/\d/]
+    context["artist_name"] = msg.gsub("details :", "").gsub(/\d/, "")
+    p context["artist_url"] = "http://www.songkick.com/artists/" + context["artist_id"] + "-" + context["artist_name"]
+    p msg
+    p msg[/\d/]
+    p msg.gsub("details :", "").gsub(/\d/, "")
+    p "HERE"
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "details"
     context["artist_id"] = msg.gsub("details :", "")
+    context["artist_id"] = msg[/\d/]
+    context["artist_name"] = msg.gsub("details :", "").gsub(/\d/, "")
+    p context["artist_url"] = "http://www.songkick.com/artists/" + context["artist_id"] + "-" + context["artist_name"]
+    p msg
+    p msg[/\d/]
+    p msg.gsub("details :", "").gsub(/\d/, "")
+    p "HERE"
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "upcoming"
     p "TRUE"
     context["artist_id"] = msg.gsub("upcoming :", "")
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "reviews"
     context["artist_id"] = msg.gsub("details :", "")
-  elsif previous_context["intent"] == "popular_artists" && context["intent"] == "details"
-    context["artist_id"] = msg.gsub("details :", "")
+    context["artist_id"] = msg[/\d/]
+    context["artist_name"] = msg.gsub("details :", "").gsub(/\d/, "")
+    p context["artist_url"] = "http://www.songkick.com/artists/" + context["artist_id"] + "-" + context["artist_name"]
     p msg
-    p msg.gsub("details :", "")
+    p msg[/\d/]
+    p msg.gsub("details :", "").gsub(/\d/, "")
+    p "HERE"
+  elsif previous_context["intent"] == "popular_artists" && context["intent"] == "details"
+    context["artist_id"] = msg[/\d/]
+    context["artist_name"] = msg.gsub("details :", "").gsub(/\d/, "")
+    p context["artist_url"] = "http://www.songkick.com/artists/" + context["artist_id"] + "-" + context["artist_name"]
+    p msg
+    p msg[/\d/]
+    p msg.gsub("details :", "").gsub(/\d/, "")
     p "HERE"
   end
   context

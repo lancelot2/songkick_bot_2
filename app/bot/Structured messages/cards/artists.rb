@@ -35,7 +35,7 @@ def send_artists(session, sender)
       context["artist_url"] = url
       session.update(context: context)
       artist_biography_button = Button.new
-      artist_biography_button.add_postback("Check details","details :#{id}")
+      artist_biography_button.add_postback("Check details","details :#{id} #{name}")
       artist_upcoming_concerts_button = Button.new
       artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
       live_reviews_button = Button.new
