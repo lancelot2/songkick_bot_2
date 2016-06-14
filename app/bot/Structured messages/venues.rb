@@ -28,12 +28,13 @@ def show_venues(session, sender)
   response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..9]
   response.each do |venue|
     url = venue["uri"]
+    address = venue["street"]
     a.get(url) do |page|
       url = "http:" + page.search(".profile-picture").attr("src").value
     end
     button = Button.new
     button.add_postback("See concerts", venue['id'])
-    structured_reply.add_element( venue["displayName"], "", url, "", [button.get_message])
+    structured_reply.add_element( venue["displayName"], "", url, address, [button.get_message])
     venue["displayName"]
   end
   sender.reply(structured_reply.get_message)
