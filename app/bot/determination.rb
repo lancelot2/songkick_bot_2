@@ -56,7 +56,7 @@ def intent_determination(msg, context, sender, session)
     p "TRUE"
     context["artist_id"] = msg.gsub("upcoming :", "")
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "reviews"
-    context["artist_id"] = msg.gsub("details :", "")
+    context["artist_id"] = msg.gsub("reviews :", "")
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "details"
     context["artist_id"] = msg.gsub("details :", "")
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "upcoming"
@@ -66,6 +66,7 @@ def intent_determination(msg, context, sender, session)
     context["artist_id"] = msg.gsub("details :", "")
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "details"
     context["artist_id"] = msg.gsub("details :", "")
+    p "HERE"
   end
   context
 end
