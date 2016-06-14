@@ -134,7 +134,7 @@ def generic_template_message(session, concerts, sender, context, msg)
     sender.reply({text: "Sorry, there isn't any concerts planned right now"})
     session.context = session.previous_context.clone
     session.save
-    MessengerBotController.new.analyze_request(session.previous_msg, sender, session)
+    MessengerBotController.new.analyze_request(session.previous_message, sender, session)
   elsif concerts.length < 9
     less_than_9_concerts(session, concerts, sender, structured_reply)
   else
