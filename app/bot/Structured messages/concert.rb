@@ -131,7 +131,12 @@ def generic_template_message(session, concerts, sender, context, msg)
   queries = session.queries.map{|q| q.attr}
 
   structured_reply = GenericTemplate.new
-  if concerts.length < 9
+  if concerts.length == 0
+    sender.reply({text: "Sorry, there isn't any concerts planned right now"})
+    session.context = session.previous_context.clone
+    session.save
+    MessengerBotController.new.analyze_request(session.previous_msg, sender, session)
+  elsif concerts.length < 9
     less_than_9_concerts(session, concerts, sender, structured_reply)
   else
     concerts_showed = context["concerts_showed"] * 9
