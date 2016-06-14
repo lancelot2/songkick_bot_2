@@ -99,7 +99,6 @@ def less_than_9_concerts(session, concerts, sender, structured_reply)
   concerts[0..9].each do |concert|
     add_concert_card(session, concert, structured_reply)
   end
-  last_card(session, structured_reply, 8)
   reply_transfer(session, sender, structured_reply)
 end
 
