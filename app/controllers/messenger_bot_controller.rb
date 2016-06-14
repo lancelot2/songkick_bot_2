@@ -24,7 +24,9 @@ class MessengerBotController < ApplicationController
     msg = event["message"]["text"]
     sender_id = event["sender"]["id"].to_i
     session = find_or_create_session(sender_id)
-    session.previous_msg = session.msg.clone
+    unless session.msg == nil
+      session.previous_msg = session.msg.clone
+    end
     session.msg = msg
     username = sender.get_profile[:body]["first_name"]
     session.last_exchange =  Time.now
