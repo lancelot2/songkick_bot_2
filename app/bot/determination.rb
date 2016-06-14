@@ -66,6 +66,8 @@ def intent_determination(msg, context, sender, session)
     context["artist_id"] = msg.gsub("details :", "")
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "details"
     context["artist_id"] = msg.gsub("details :", "")
+    p msg
+    p msg.gsub("details :", "")
     p "HERE"
   end
   context
