@@ -29,9 +29,19 @@ require "geocoder"
 
   #  context = {}
   #  context["intent"] = "popular_artists"
-   a = Mechanize.new { |agent|
+  a = Mechanize.new { |agent|
     agent.user_agent_alias = 'Mac Safari'
   }
+  a.get("http://www.songkick.com/leaderboards/popular_artists") do |page|
+    page.search(".leaderboard tr")[1..9].each do |artist|
+      #ap artist.search(".name a").first.text
+      name = artist.search(".name a").first.text
+      p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+      # p image = "http:" + artist.search(".profile-image img").first.attr("src")
+      ap url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+
+    end
+  end
 
   #  area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=london&apikey=h76Z5PDgOid28Zly"
   # area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
@@ -47,18 +57,18 @@ require "geocoder"
   #
   # venur_url = "http://api.songkick.com/api/3.0/artists/8761459/calendar.json?apikey=h76Z5PDgOid28Zly"
   #   concerts =  Oj.load(RestClient.get artist_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["event"]
-  venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
-  response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
-  response.each do |venue|
-    url = venue["uri"]
-    p url
-     a.get(url) do |page|
-     p page.search("h1").first.children.first.text
-     p "############"
-     #p url = "http:" + page.search(".profile-picture").attr("src").value
+  # venue_url = "http://api.songkick.com/api/3.0/search/venues.json?query=london&apikey=h76Z5PDgOid28Zly"
+  # response =  Oj.load(RestClient.get venue_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["venue"][0..1]
+  # response.each do |venue|
+  #   url = venue["uri"]
+  #   p url
+  #    a.get(url) do |page|
+  #    p page.search("h1").first.children.first.text
+  #    p "############"
+  #    #p url = "http:" + page.search(".profile-picture").attr("src").value
 
-    end
-  end
+  #   end
+  # end
   # a.get("http://www.songkick.com/leaderboards/trending_artists") do |page|
   #  # p page
   #   name = page.search(".leaderboard tr")[1..10][0].search(".name a").first.text
