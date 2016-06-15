@@ -13,6 +13,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
   def context_update
   session = find_session(params[:fbid])
+  p "FETCHED SESSION"
+  p session.id
   context = session.context
   p "CONTEXT"
   context["city"] = params[:city]
