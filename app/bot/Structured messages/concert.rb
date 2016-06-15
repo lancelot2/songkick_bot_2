@@ -146,7 +146,7 @@ def generic_template_message(session, concerts, sender, context, msg)
       less_than_9_concerts_left(concerts, session, concerts_showed, structured_reply)
     end
     sender.reply(structured_reply.get_message)
-    transfer_middle_office(session.id, sender, structured_reply.get_message)
+    transfer_middle_office(session.id, sender, structured_reply.get_message, "bot")
     p "ENVOYE"
   end
 end

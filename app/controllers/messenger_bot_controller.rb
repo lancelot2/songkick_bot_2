@@ -34,8 +34,7 @@ class MessengerBotController < ApplicationController
     session.previous_context = session.context.clone
 
     session.save
-    mms_url = "https://mymessagingstore.herokuapp.com/api/v1/sessions?fbid=#{sender_id}&msg=#{msg}&first_name=#{username}&sender=user"
-  #  RestClient.post URI.encode(mms_url), :content_type => :json, :accept => :json
+    transfer_middle_office(session_id, sender, msg = "", "user")
 
 
     unless session.status == "human"
@@ -43,7 +42,7 @@ class MessengerBotController < ApplicationController
         p event["message"]["attachments"].first["title"]
         if event["message"]["attachments"].first["title"].nil?
           sender.reply({text: "Sorry but we can't process images (yet :-) )"})
-          transfer_middle_office(session.id, sender, "Sorry but we can't process images (yet :-) )")
+          transfer_middle_office(session.id, sender, "Sorry but we can't process images (yet :-) )", "bot")
         else
           if event["message"]["attachments"][0]["payload"]
             if event["message"]["attachments"][0]["payload"]["coordinates"]
@@ -73,6 +72,7 @@ class MessengerBotController < ApplicationController
     session = find_or_create_session(sender_id)
     session.update(last_exchange: Time.now)
     analyze_request(msg, sender, session)
+    transfer_middle_office(session_id, sender, msg = "", "user")
   end
 
   private

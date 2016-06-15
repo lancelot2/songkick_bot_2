@@ -3,7 +3,7 @@
 def country(sender)
 
   sender.reply({text: t('city-navigation-intro')})
-  transfer_middle_office(session.id, sender, "city-navigation-intro")
+  transfer_middle_office(session.id, sender, t('city-navigation-intro'), "bot")
 
   structured_reply = GenericTemplate.new
 

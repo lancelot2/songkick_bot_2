@@ -9,7 +9,7 @@ end
 def reply_transfer(session, sender, structured_reply)
   username = sender.get_profile[:body]["first_name"]
   sender.reply(structured_reply.get_message)
-  transfer_middle_office(session.id, sender, structured_reply.get_message)
+  transfer_middle_office(session.id, sender, structured_reply.get_message, "bot")
 end
 
 

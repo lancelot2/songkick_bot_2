@@ -2,10 +2,10 @@ def navigation(session, username, sender, msg = "")
   context = session.context
   if context["intent"] == "start"
     sender.reply({text: t('navigation-intro-1', username: username)})
-    transfer_middle_office(session.id, sender, "hey")
+    transfer_middle_office(session.id, sender, msg, "bot")
     sleep(3)
     sender.reply({text: t('navigation-intro-2')})
-    transfer_middle_office(session.id, sender, "hey")
+    transfer_middle_office(session.id, sender, msg, "bot")
     sleep(3)
     # sender.reply({text: t('navigation-intro-3')})
     # transfer_middle_office(session.id, sender, "hey")
@@ -27,7 +27,7 @@ def navigation(session, username, sender, msg = "")
     context = {}
     session.update(context: context)
     sender.reply({text: t('exit-requested', username: username)})
-    transfer_middle_office(session.id, sender, t('exit-requested'))
+    transfer_middle_office(session.id, sender, t('exit-requested'), "bot")
     gif = ImageTemplate.new('http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif')
     sender.reply(gif.get_message)
   # elsif context["intent"] == "restart"
