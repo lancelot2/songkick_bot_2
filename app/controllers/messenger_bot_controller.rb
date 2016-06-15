@@ -34,7 +34,7 @@ class MessengerBotController < ApplicationController
     session.previous_context = session.context.clone
 
     session.save
-    transfer_middle_office(session_id, sender, msg = "", "user")
+    transfer_middle_office(session.id, sender, msg = "", "user")
 
 
     unless session.status == "human"
