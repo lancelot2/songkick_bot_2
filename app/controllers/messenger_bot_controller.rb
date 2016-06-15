@@ -72,7 +72,7 @@ class MessengerBotController < ApplicationController
     session = find_or_create_session(sender_id)
     session.update(last_exchange: Time.now)
     analyze_request(msg, sender, session)
-    transfer_middle_office(session.id, sender, msg = "", "user")
+    transfer_middle_office(session.id, sender, msg, "user")
   end
 
   private
