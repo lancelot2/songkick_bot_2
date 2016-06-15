@@ -5,7 +5,7 @@ def transfer_middle_office(session_id, sender, msg = "", type)
   username = sender.get_profile[:body]["first_name"]
   profile_picture = {profile_pic: (sender.get_profile[:body]["profile_pic"])}.to_query
   url = "https://mymessagingstore.herokuapp.com/api/v1/sessions"
-
+  p msg
   request_params = {
     :bot_id => ENV['mms_token'],
     :key => key,

@@ -2,7 +2,7 @@ def navigation(session, username, sender, msg = "")
   context = session.context
   if context["intent"] == "start"
     sender.reply({text: t('navigation-intro-1', username: username)})
-    transfer_middle_office(session.id, sender, t('navigation-intro-1'), "bot")
+    transfer_middle_office(session.id, sender, t('navigation-intro-1', username: username)), "bot")
     sleep(3)
     sender.reply({text: t('navigation-intro-2')})
     transfer_middle_office(session.id, sender, t('navigation-intro-2'), "bot")
