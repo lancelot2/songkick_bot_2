@@ -1,6 +1,6 @@
 # method for laying out the 10 cities available in the UK
 
-def usa(sender)
+def usa(session, sender)
   structured_reply = GenericTemplate.new
 
   upcoming_concerts_in_san_francisco_button = Button.new
