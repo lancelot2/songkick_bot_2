@@ -28,7 +28,8 @@ def navigation(session, username, sender, msg = "")
     session.update(context: context)
     sender.reply({text: t('exit-requested', username: username)})
     transfer_middle_office(session.id, sender, t('exit-requested'), "bot")
-    gif = ImageTemplate.new('http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif')
+    gifs = ['http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372198/SongKick/GIF/bye_rihanna.gif', 'http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372192/SongKick/GIF/bye_christine_and_the_queens.gif', 'http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372187/SongKick/GIF/bye_one_direction.gif', 'http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372168/SongKick/GIF/bye_amy.gif', 'http://res.cloudinary.com/dpy7x8rgs/image/upload/v1465372193/SongKick/GIF/bye_britney.gif']
+    gif = ImageTemplate.new(gifs.sample)
     sender.reply(gif.get_message)
   # elsif context["intent"] == "restart"
   #   sender.reply({text: t('restart-requested')})
