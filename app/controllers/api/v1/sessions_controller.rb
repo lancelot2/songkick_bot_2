@@ -25,8 +25,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
   p "UPDATED CONTEXT"
   p session.context
   sender = Messenger::Bot::Transmitter.new(params[:fbid])
-
-  answer(session, "Matthias", sender)
+  username = sender.get_profile[:body]["first_name"]
+  answer(session, username, sender)
   respond_to do |format|
     format.js
   end
