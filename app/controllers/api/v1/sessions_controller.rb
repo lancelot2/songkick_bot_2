@@ -11,29 +11,23 @@ class Api::V1::SessionsController < Api::V1::BaseController
    end
  end
 
- def context_update
-   session = find_session(params[:fbid])
-   context = session.context
-   # p "CONTEXT"
-   # context["intent"] = params[:context][:intent]
-   # context["brand"] = params[:context][:brand]
-   # context["size"] = params[:context][:variant]
-   # if params[:context][:delivery_method].present?
-   #   context["intent"] = params[:context][:delivery_method]
-   # end
+  def context_update
+  session = find_session(params[:fbid])
+  context = session.context
+  p "CONTEXT"
+  context["city"] = params[:city]
+  context["artists"] = params[:artists]
+  context["country"] = params[:country]
 
-   # session.update(context: context)
-   # p "UPDATED CONTEXT"
-   # p session.context
-   # sender = Messenger::Bot::Transmitter.new(params[:fbid])
-   # if params[:context][:delivery_address].present?
-   #  address_formatting('hey', session)
-   # end
-   # answer(session, "Matthias", sender)
-   # respond_to do |format|
-   #  format.js
-   #  format.json
-   # end
+  session.update(context: context)
+  p "UPDATED CONTEXT"
+  p session.context
+  sender = Messenger::Bot::Transmitter.new(params[:fbid])
+
+  answer(session, "Matthias", sender)
+  respond_to do |format|
+    format.js
+  end
  end
 
  # def create
