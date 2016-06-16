@@ -17,9 +17,19 @@ class Api::V1::SessionsController < Api::V1::BaseController
   p session.id
   context = session.context
   p "CONTEXT"
-  context["city"] = params[:city]
-  context["artists"] = params[:artists]
-  context["country"] = params[:country]
+  if params[:city].present?
+    context["city"] = params[:city]
+  end
+  if params[:artists].present?
+    context["artists"] = params[:artists]
+  end
+  if params[:country].present?
+    context["country"] = params[:country]
+  end
+  if params[:intent].present?
+    context["intent"] = params[:intent]
+  end
+
   if params[:msg].present?
     msg = params[:msg]
   else
