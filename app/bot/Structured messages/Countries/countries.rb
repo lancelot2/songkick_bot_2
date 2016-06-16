@@ -1,6 +1,6 @@
 # method for laying out the 3 geographical areas
 
-def country(session, sender)
+def country(session, sender, msg)
 
   sender.reply({text: t('city-navigation-intro')})
   transfer_middle_office(session.id, sender, t('city-navigation-intro'), "bot")
