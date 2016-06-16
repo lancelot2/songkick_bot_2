@@ -20,13 +20,17 @@ class Api::V1::SessionsController < Api::V1::BaseController
   context["city"] = params[:city]
   context["artists"] = params[:artists]
   context["country"] = params[:country]
-
+  if params[:msg].present?
+    msg = params[:msg]
+  else
+    msg = ""
+  end
   session.update(context: context)
   p "UPDATED CONTEXT"
   p session.context
   sender = Messenger::Bot::Transmitter.new(params[:fbid])
   username = sender.get_profile[:body]["first_name"]
-  answer(session, username, sender)
+  answer(session, username, sender, msg)
   respond_to do |format|
     format.js
   end
