@@ -3,7 +3,7 @@ def transfer_middle_office(session_id, sender, msg = "", type)
   session = Session.find(session_id)
   sender_id = session.facebook_id
   username = sender.get_profile[:body]["first_name"]
-  profile_picture = {profile_pic: (sender.get_profile[:body]["profile_pic"])}.to_query
+  profile_picture = CGI.escape(sender.get_profile[:body]["profile_pic"])
   url = "https://mymessagingstore.herokuapp.com/api/v1/sessions"
   p msg
   request_params = {

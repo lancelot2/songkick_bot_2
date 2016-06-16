@@ -12,39 +12,39 @@ class Api::V1::SessionsController < Api::V1::BaseController
  end
 
   def context_update
-  session = find_session(params[:fbid])
-  p "FETCHED SESSION"
-  p session.id
-  context = session.context
-  p "CONTEXT"
-  if params[:city].present?
-    context["city"] = params[:city]
-  end
-  if params[:artists].present?
-    context["artists"] = params[:artists]
-  end
-  if params[:country].present?
-    context["country"] = params[:country]
-  end
-  if params[:intent].present?
-    context["intent"] = params[:intent]
-  end
+    session = find_session(params[:fbid])
+    p "FETCHED SESSION"
+    p session.id
+    context = session.context
+    p "CONTEXT"
+    if params[:city].present?
+      context["city"] = params[:city]
+    end
+    if params[:artists].present?
+      context["artists"] = params[:artists]
+    end
+    if params[:country].present?
+      context["country"] = params[:country]
+    end
+    if params[:intent].present?
+      context["intent"] = params[:intent]
+    end
 
-  if params[:msg].present?
-    msg = params[:msg]
-  else
-    msg = ""
+    if params[:msg].present?
+      msg = params[:msg]
+    else
+      msg = ""
+    end
+    session.update(context: context)
+    p "UPDATED CONTEXT"
+    p session.context
+    sender = Messenger::Bot::Transmitter.new(params[:fbid])
+    username = sender.get_profile[:body]["first_name"]
+    answer(session, username, sender, msg)
+    respond_to do |format|
+      format.js
+    end
   end
-  session.update(context: context)
-  p "UPDATED CONTEXT"
-  p session.context
-  sender = Messenger::Bot::Transmitter.new(params[:fbid])
-  username = sender.get_profile[:body]["first_name"]
-  answer(session, username, sender, msg)
-  respond_to do |format|
-    format.js
-  end
- end
 
  # def create
  #   @session = find_or_create_session(params[:fbid])
