@@ -13,7 +13,7 @@ def entity(session, username, sender, msg= "", parameter)
       #products = run_query(session, msg)
       send(context[parameter], session, sender)
     elsif context["intent"] == parameter
-      send(parameter, session, sender)
+      send(parameter, session, sender, msg)
     end
 end
 
