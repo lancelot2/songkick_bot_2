@@ -32,7 +32,7 @@ en:
   city-navigation-intro: "You can share your location with us, type your city name or simply click one of the flags below."
   stop: "Ok, what can I do for you then ?"
   human-assistance-requested: "A human operator will take it from here. It might take a few minutes. Feel free to type what you're looking for"
-  exit-requested: "It was a pleasure talking to you. Have a nice day %{username} ! :* "
+  exit-requested: "It was a pleasure talking to you. Have a nice day %{username} ! :-) "
   restart-requested: "Roger that ! If ever we are missing something, one of our agents will be in touch with you"
   lost: "Please hold on a few seconds, while I analyse your last message."
   collecting-user-location: "Sounds good! Send us your location, using the [...] button, or type your city and we'll show you the closest stores"
