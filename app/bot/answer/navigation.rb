@@ -35,12 +35,20 @@ def navigation(session, username, sender, msg = "")
   #   sender.reply({text: t('restart-requested')})
   #   transfer_middle_office(session.id, sender, t('restart-requested'))
   #   cta_restart_message(sender)
-  # elsif session.context["intent"] == "lost"
-  #   sender.reply({text: t('lost')})
-  #   transfer_middle_office(session.id, sender, t('lost'))
+  elsif session.context["intent"] == "lost"
+    sender.reply({text: t('lost')})
+    transfer_middle_office(session.id, sender, t('lost'))
   # elsif context["intent"] == "mainbrowsing"
   #   context = {}
-  #   cta_intent_message(session, sender)
+  #   cta_intent_message(session, sender)`
+  elsif context["intent"] == "artist_search"
+    search_url = "http://api.songkick.com/api/3.0/search/artists.json?query=#{context['artist']}&apikey=h76Z5PDgOid28Zly"
+    name = Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["displayName"]
+    id = Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["id"]
+    artist_url = "http://www.songkick.com/artists/" + id + "-" + name
+    context["artist_url"] = artist_url
+    session.update(context: context)
+    single_card(session, sender)
   elsif context["intent"] == "single_card"
     single_card(session, sender)
   elsif context["intent"] == "city" && context["country"].present? && context["city"].present?
