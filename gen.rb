@@ -29,22 +29,22 @@ require "geocoder"
 
   #  context = {}
   #  context["intent"] = "popular_artists"
-  # a = Mechanize.new { |agent|
-  #   agent.user_agent_alias = 'Mac Safari'
-  # }
-  # a.get("http://www.songkick.com/leaderboards/popular_artists") do |page|
-  #   page.search(".leaderboard tr")[1..9].each do |artist|
-  #     #ap artist.search(".name a").first.text
-  #     name = artist.search(".name a").first.text
-  #     p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
-  #     # p image = "http:" + artist.search(".profile-image img").first.attr("src")
-  #     ap url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
+  a.get("http://www.songkick.com/artists/206565-Sum 41") do |page|
 
-  #   end
-  # end
-  search_url = "http://api.songkick.com/api/3.0/search/artists.json?query=coldplay&apikey=h76Z5PDgOid28Zly"
-  ap Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["displayName"]
-  ap Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["id"]
+      #ap artist.search(".name a").first.text
+     # name = artist.search(".name a").first.text
+      #p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+       p image = "http:" + page.search(".profile-picture-wrap img").first.attr("src")
+      #ap url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+
+
+  end
+  # search_url = "http://api.songkick.com/api/3.0/search/artists.json?query=coldplay&apikey=h76Z5PDgOid28Zly"
+  # ap Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["displayName"]
+  # ap Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["id"]
   #  area_url = "http://api.songkick.com/api/3.0/search/locations.json?query=london&apikey=h76Z5PDgOid28Zly"
   # area_response  =  Oj.load(RestClient.get area_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["location"].first["metroArea"]["id"]
   # concert_url = "http://api.songkick.com/api/3.0/metro_areas/#{area_response}/calendar.json?apikey=h76Z5PDgOid28Zly"

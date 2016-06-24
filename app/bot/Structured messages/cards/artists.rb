@@ -4,7 +4,7 @@ def add_artist_card(page, structured_reply)
       agent.user_agent_alias = 'Mac Safari'
     }
     a.get(artist["uri"]) do |page|
-      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+      image_url =  "http:" + page.search(".profile-picture-wrap img").first.attr("src")
       artist_biography = Button.new
       artist_biography.add_postback("Check details", "iD: artist_biography")
       live_reviews = Button.new
@@ -96,7 +96,7 @@ def single_card(session, sender)
   if context["artist_url"].present? && context["intent"] == "artist_search"
     a.get(context["artist_url"]) do |page|
       artist_name = page.search("h1").text
-      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+      image_url =  "http:" + page.search(".profile-picture-wrap img").first.attr("src")
       id = context["artist_url"].gsub("http://www.songkick.com/artists/", "")[/\d+/]
       artist_upcoming_concerts_button = Button.new
       artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
@@ -110,7 +110,7 @@ def single_card(session, sender)
   elsif context["artist_url"].present? && context["venue_url"].nil?
     a.get(context["artist_url"]) do |page|
       artist_name = page.search("h1").text
-      image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value
+      image_url =  "http:" + page.search(".profile-picture-wrap img").first.attr("src")
       id = context["artist_url"].gsub("http://www.songkick.com/artists/", "")[/\d+/]
       artist_biography_button = Button.new
       artist_biography_button.add_postback("Check details","details :#{id}")
