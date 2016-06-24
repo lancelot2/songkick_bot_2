@@ -107,7 +107,7 @@ def single_card(session, sender)
       structured_reply.add_element(artist_name, "", image_url, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
     end
     sender.reply(structured_reply.get_message)
-  elsif context["artist_url"].present?
+  elsif context["artist_url"].present? && context["venue_url"].nil?
     a.get(context["artist_url"]) do |page|
       artist_name = page.search("h1").text
       image_url =  "http:" + page.search(".artist-profile-image")[10].attributes["src"].value

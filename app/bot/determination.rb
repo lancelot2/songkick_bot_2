@@ -29,6 +29,9 @@ def intent_determination(msg, context, sender, session)
   p context
   if previous_context["intent"] == "country" && context["city"].nil? && context["lat"].present?
     context["intent"] = "geolocated"
+  if context["artist"].present? && context["intent"] == "venue" && context["artist_id"].present? && context["artist_url"].present? && previous_context["intent"] == "upcoming"
+    context["intent"] = "single_card"
+    context["venue_url"] = msg.gsub(" venues", "")
   elsif previous_context["intent"] == "city" && context["city"].present? && context["intent"] == "venue" && context["country"].present? && context.size > 3
     context["intent"] = "venue"
   elsif context["city"].present? && context["intent"] == "artists" && context["venue_id"].present? && previous_context["intent"] == "show_concerts"
