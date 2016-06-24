@@ -6,7 +6,7 @@ def update_context(msg, session, sender)
   session.update(context: entities_determination(session, msg, session.context, "city"))
   session.update(context: intent_determination(msg, session.context, sender, session))
 
-  unless session.context.size == 0
+  unless session.context.size == 1
     if previous_context == session.context
       session.context["intent"] = "lost"
       session.save
