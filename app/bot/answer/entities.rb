@@ -17,7 +17,7 @@ def entity(session, username, sender, msg= "", parameter)
     if previous_session.nil? == false && previous_session.context["city"].present?
       structured_reply = ButtonTemplate.new
       structured_reply.set_text("Are you still in #{context['city']} ?")
-      structured_reply.add_postback("Yes", context["city"])
+      structured_reply.add_postback("Yes", previous_session.context["city"])
       structured_reply.add_postback("No", "no")
       reply_transfer(session, sender, structured_reply)
     else
