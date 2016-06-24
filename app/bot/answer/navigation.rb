@@ -46,6 +46,7 @@ def navigation(session, username, sender, msg = "")
     name = Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["displayName"]
     id = Oj.load(RestClient.get search_url, :content_type => :json, :accept => :json)["resultsPage"]["results"]["artist"].first["id"]
     artist_url = "http://www.songkick.com/artists/" + id.to_s + "-" + name
+     context["artist_id"] = id
     context["artist_url"] = artist_url
     session.update(context: context)
     single_card(session, sender)

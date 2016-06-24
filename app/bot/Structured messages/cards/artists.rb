@@ -31,8 +31,8 @@ def send_artists(session, sender)
       p name = artist.search(".name a").first.text
       p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
       p image = "http:" + artist.search(".profile-image img").first.attr("src")
-      url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
-      context["artist_url"] = url
+      # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+      # context["artist_url"] = url
       session.update(context: context)
       artist_biography_button = Button.new
       artist_biography_button.add_postback("Check details","details :#{id} #{name}")
