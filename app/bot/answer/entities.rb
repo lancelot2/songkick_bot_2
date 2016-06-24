@@ -12,9 +12,20 @@ def entity(session, username, sender, msg= "", parameter)
       session.update(context: context)
       #products = run_query(session, msg)
       send(context[parameter], session, sender)
-    elsif context["intent"] == parameter
-      send(parameter, session, sender, msg)
+  elsif context["intent"] == "country"
+    previous_session = Session.where(facebook_id: session.facebook_id).last(2).first
+    if previous_session.nil? == false && previous_session.context["city"].present?
+      structured_reply = ButtonTemplate.new
+      structured_reply.set_text("Are you still in #{context['city']} ?")
+      structured_reply.add_postback("Yes", context["city"])
+      structured_reply.add_postback("No", "no")
+      reply_transfer(session, sender, structured_reply)
+    else
+     send("city", session, sender, msg)
     end
+  elsif context["intent"] == parameter
+    send(parameter, session, sender, msg)
+  end
 end
 
 # def area_entity(session, username, sender, msg= "", parameter)

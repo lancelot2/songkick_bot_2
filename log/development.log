@@ -1479,3 +1479,4 @@ Started GET "/" for ::1 at 2016-06-15 11:39:04 +0100
 Processing by PagesController#home as HTML
   Rendered pages/home.html.erb within layouts/application (0.8ms)
 Completed 200 OK in 23ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+  [1m[36mSession Load (14.9ms)[0m  [1mSELECT  "sessions".* FROM "sessions"  ORDER BY "sessions"."id" DESC LIMIT 1[0m
