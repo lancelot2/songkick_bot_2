@@ -17,4 +17,9 @@ def transfer_middle_office(session_id, sender, msg = "", type)
     :profile_pic => profile_picture
   }
   RestClient.post URI.encode(url), request_params.to_json, :content_type => :json, :accept => :json
+  count = session.count
+  if count < 3
+    count += 1
+    session.update(count: count)
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614052652) do
+ActiveRecord::Schema.define(version: 20160628123354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160614052652) do
     t.jsonb    "previous_context"
     t.string   "msg"
     t.string   "previous_message"
+    t.integer  "count"
   end
 
   add_index "sessions", ["order_id"], name: "index_sessions_on_order_id", using: :btree

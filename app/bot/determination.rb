@@ -58,6 +58,8 @@ def intent_determination(msg, context, sender, session)
     context["intent"] = "show_concerts"
   elsif previous_context["intent"].nil? && context["intent"].nil?
     context["intent"] = "start"
+  elsif context["intent"] == "start" && session.count > 3
+    context["intent"] == "paused"
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "upcoming"
     p "TRUE"
     context["artist_id"] = msg.gsub("upcoming :", "")

@@ -82,7 +82,7 @@ class MessengerBotController < ApplicationController
       session = Session.find_by(["facebook_id = ? AND last_exchange >= ?", fbid, max_age.ago])
     else
       order = Order.create
-      session = Session.create(facebook_id: fbid, context: {}, order_id: order.id)
+      session = Session.create(facebook_id: fbid, context: {}, order_id: order.id, count: 0)
     end
   end
 
