@@ -12,7 +12,7 @@ def entity(session, username, sender, msg= "", parameter)
       session.update(context: context)
       #products = run_query(session, msg)
       send(context[parameter], session, sender)
-  elsif context["intent"] == "country"
+  elsif context["intent"] == "country" && parameter == "country"
     previous_session = Session.where(facebook_id: session.facebook_id).last(2).first
     if previous_session.nil? == false && previous_session.context["city"].present? && session.count < 5
       structured_reply = ButtonTemplate.new
@@ -23,9 +23,7 @@ def entity(session, username, sender, msg= "", parameter)
     else
       p "COUNT"
       p session.count
-      if session.count < 6
-        send("country", session, sender, msg)
-      end
+      send("country", session, sender, msg)
     end
   elsif context["intent"] == parameter
     p "INTENT EQUALS PARAM"
