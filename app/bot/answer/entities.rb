@@ -28,6 +28,9 @@ def entity(session, username, sender, msg= "", parameter)
       end
     end
   elsif context["intent"] == parameter
+    p "INTENT EQUALS PARAM"
+    p context["intent"]
+    p parameter
     send(parameter, session, sender, msg)
   end
 end
