@@ -21,7 +21,11 @@ def entity(session, username, sender, msg= "", parameter)
       structured_reply.add_postback("No", "no")
       reply_transfer(session, sender, structured_reply)
     else
-     send("country", session, sender, msg)
+      p "COUNT"
+      p session.count
+      if session.count < 6
+        send("country", session, sender, msg)
+      end
     end
   elsif context["intent"] == parameter
     send(parameter, session, sender, msg)
