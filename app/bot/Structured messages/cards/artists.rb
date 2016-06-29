@@ -49,6 +49,7 @@ def send_artists(session, sender)
     else
       if artists_left > 9
          page.search(".leaderboard tr")[artists_showed..(artists_showed + 8)].each do |artist|
+          p artist
           p name = artist.search(".name a").first.text
           p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
           p image = "http:" + artist.search(".profile-image img").first.attr("src")
