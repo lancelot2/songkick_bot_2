@@ -48,7 +48,7 @@ def send_artists(session, sender)
       end
     else
       if artists_left > 9
-         page.search(".leaderboard tr")[(artists_showed + 1)..(artists_showed + 8)].each do |artist|
+         page.search(".leaderboard tr")[(artists_showed + 1)..(artists_showed + 9)].each do |artist|
           p name = artist.search(".name a").first.text
           p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
           p image = "http:" + artist.search(".profile-image img").first.attr("src")
@@ -67,7 +67,7 @@ def send_artists(session, sender)
           viewmore_button.add_postback("View more","viewmore")
           structured_reply.add_element("View more", "", "http://res.cloudinary.com/dltbqhact/image/upload/v1466604495/Browse%20more/Lego/vador-card.png", "", [viewmore_button.get_message] )
       elsif artists_left > 0
-        page.search(".leaderboard tr")[(artists_showed + 1)..(artists_left+9)].each do |artist|
+        page.search(".leaderboard tr")[(artists_showed + 1)..(artists_showed + 8)].each do |artist|
           p name = artist.search(".name a").first.text
           p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub(/[^\d]/, '')
           p image = "http:" + artist.search(".profile-image img").first.attr("src")
