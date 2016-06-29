@@ -128,9 +128,9 @@ def generic_template_message(session, concerts, sender, context, msg)
   p "GENERIC"
   p context
   queries = session.queries.map{|q| q.attr}
-
+  p concerts
   structured_reply = GenericTemplate.new
-  if concerts.length == 0
+  if concerts.nil? || concerts.length == 0
     sender.reply({text: "Sorry, there isn't any concerts planned right now"})
     session.context = session.previous_context.clone
     session.save
