@@ -25,6 +25,7 @@ def navigation(session, username, sender, msg = "")
   #  help_request(username)
   elsif context["intent"] == "exit"
     context = {}
+    context["artists_showed"] = 0
     session.update(context: context, count: 0)
     sender.reply({text: t('exit-requested', username: username)})
     transfer_middle_office(session.id, sender, "It was a pleasure talking to you. Have a nice day", "bot")

@@ -27,32 +27,71 @@ def send_artists(session, sender)
     agent.user_agent_alias = 'Mac Safari'
   }
   a.get("http://www.songkick.com/leaderboards/#{context['intent']}") do |page|
-    page.search(".leaderboard tr")[1..9].each do |artist|
-      p name = artist.search(".name a").first.text
-      p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
-      p image = "http:" + artist.search(".profile-image img").first.attr("src")
-      # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
-      # context["artist_url"] = url
-      session.update(context: context)
-      artist_biography_button = Button.new
-      artist_biography_button.add_postback("Check details","details :#{id} #{name}")
-      artist_upcoming_concerts_button = Button.new
-      artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
-      live_reviews_button = Button.new
-      live_reviews_button.add_postback("Live reviews","reviews :#{id}")
-      structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
+    artists_total = page.search(".leaderboard tr").count
+    artists_showed = context["artists_showed"].to_i * 9
+    artists_left = artists_total - artists_showed
+    if artists_total < 9
+      page.search(".leaderboard tr")[0..9].each do |artist|
+        p name = artist.search(".name a").first.text
+        p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+        p image = "http:" + artist.search(".profile-image img").first.attr("src")
+        # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+        # context["artist_url"] = url
+        session.update(context: context)
+        artist_biography_button = Button.new
+        artist_biography_button.add_postback("Check details","details :#{id} #{name}")
+        artist_upcoming_concerts_button = Button.new
+        artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
+        live_reviews_button = Button.new
+        live_reviews_button.add_postback("Live reviews","reviews :#{id}")
+        structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
+      end
+    else
+      if artists_left > 9
+         page.search(".leaderboard tr")[artists_showed..(artists_showed + 8)].each do |artist|
+          p name = artist.search(".name a").first.text
+          p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+          p image = "http:" + artist.search(".profile-image img").first.attr("src")
+          # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+          # context["artist_url"] = url
+          session.update(context: context)
+          artist_biography_button = Button.new
+          artist_biography_button.add_postback("Check details","details :#{id} #{name}")
+          artist_upcoming_concerts_button = Button.new
+          artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
+          live_reviews_button = Button.new
+          live_reviews_button.add_postback("Live reviews","reviews :#{id}")
+          structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
+        end
+          viewmore_button = Button.new
+          viewmore_button.add_postback("View more","viewmore")
+          structured_reply.add_element("View more", "", "http://res.cloudinary.com/dltbqhact/image/upload/v1466604495/Browse%20more/Lego/vador-card.png", "", [viewmore_button.get_message] )
+      elsif artists_left > 0
+        page.search(".leaderboard tr")[artists_left..(artists_left+9)].each do |artist|
+          p name = artist.search(".name a").first.text
+          p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+          p image = "http:" + artist.search(".profile-image img").first.attr("src")
+          # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
+          # context["artist_url"] = url
+          session.update(context: context)
+          artist_biography_button = Button.new
+          artist_biography_button.add_postback("Check details","details :#{id} #{name}")
+          artist_upcoming_concerts_button = Button.new
+          artist_upcoming_concerts_button.add_postback("Upcoming concerts","upcoming :#{id}")
+          live_reviews_button = Button.new
+          live_reviews_button.add_postback("Live reviews","reviews :#{id}")
+          structured_reply.add_element(name, "", image, "", [artist_upcoming_concerts_button.get_message, artist_biography_button.get_message, live_reviews_button.get_message] )
+        end
+      end
     end
-    # artist_biography_button = Button.new
-    # artist_biography_button.add_postback("Check details", "iD: artist_biography")
-    # live_reviews_button = Button.new
-    # live_reviews_button.add_postback("Live Reviews", "iD: live_reviews")
-    # artist_upcoming_concerts_button = Button.new
-    # artist_upcoming_concerts_button.add_postback("Upcoming concerts", "iD: artist_upcoming_concerts")
-    #structured_reply.add_element(name, "", image, "", [artist_biography_button.get_message, live_reviews_button.get_message, artist_upcoming_concerts_button.get_message])
   end
   p structured_reply.get_message
   sender.reply(structured_reply.get_message)
 end
+
+# def less_than_9_artists(session, sender, structured_reply)
+
+# end
 
 
 def send_artists_reviews_details(session, sender)
