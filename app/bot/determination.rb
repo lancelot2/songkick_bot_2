@@ -7,6 +7,7 @@ def intent_determination(msg, context, sender, session)
               ["back"],
               ["upcoming"],
               ["details"],
+              ["viewmore"],
               ["reviews"],
               ["mainbrowsing"],
               ["popular_artists"],
@@ -29,6 +30,10 @@ def intent_determination(msg, context, sender, session)
   p context
   if previous_context["intent"] == "country" && context["city"].nil? && context["lat"].present?
     context["intent"] = "geolocated"
+  elsif context["intent"] == "viewmore"
+    context["intent"] = previous_context["intent"]
+    context["viewmore"] = true
+    context["artists_showed"] += 1
   elsif context["artist"].present? && context["intent"] == "venue" && context["artist_id"].present? && context["artist_url"].present? && previous_context["intent"] == "upcoming"
     context["intent"] = "single_card"
     context["venue_url"] = msg.gsub(" venues", "")
