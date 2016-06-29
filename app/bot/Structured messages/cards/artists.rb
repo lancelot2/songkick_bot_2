@@ -69,7 +69,7 @@ def send_artists(session, sender)
       elsif artists_left > 0
         page.search(".leaderboard tr")[(artists_showed + 1)..(artists_left+9)].each do |artist|
           p name = artist.search(".name a").first.text
-          p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub("-#{name.downcase}", "")
+          p id = artist.search(".name a").first.attr("href").gsub("/artists/", "").gsub(/[^\d]/, '')
           p image = "http:" + artist.search(".profile-image img").first.attr("src")
           # url = "http://www.songkick.com/" + artist.search(".name a").first.attr("href")
           # context["artist_url"] = url
