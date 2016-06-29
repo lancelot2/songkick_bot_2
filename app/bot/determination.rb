@@ -68,7 +68,7 @@ def intent_determination(msg, context, sender, session)
     context["intent"] == "paused"
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "upcoming"
     p "TRUE"
-    context["artist_id"] = msg.gsub("upcoming :", "").gsub(/\d/, "")
+    context["artist_id"] = msg.scan(/\d+/).first
   elsif previous_context["intent"] == "trending_artists" && context["intent"] == "reviews"
     context["artist_id"] = msg.gsub("reviews :", "")
     context["artist_id"] = msg.gsub(/[^\d]/, '')
@@ -89,7 +89,7 @@ def intent_determination(msg, context, sender, session)
     p "HERE"
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "upcoming"
     p "TRUE"
-    context["artist_id"] = msg.gsub("upcoming :", "").gsub(/\d/, "")
+    context["artist_id"] = msg.scan(/\d+/).first
   elsif previous_context["intent"] == "popular_artists" && context["intent"] == "reviews"
     context["artist_id"] = msg.gsub("details :", "")
     context["artist_id"] = msg.gsub(/[^\d]/, '')
